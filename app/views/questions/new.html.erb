@@ -1,0 +1,53 @@
+
+<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+
+<div class="question new">
+  <h2>Create Question</h2>
+
+  <%= form_for(:question, :url => {:action => 'create'}) do |f| %>
+  
+    <table summary="Question form fields">
+      <tr>
+        <th>Question Subject</th>
+        <td><%= f.text_field(:subject) %></td>
+      </tr>
+      <tr>
+        <th>Question</th>
+        <td><%= f.text_field(:question) %></td>
+      </tr>
+      <tr>
+        <th>Choice A</th>
+        <td><%= f.text_field(:answerA) %></td>
+      </tr>
+      <tr>
+        <th>Choice B</th>
+        <td><%= f.text_field(:answerB) %></td>
+      </tr>
+      <tr>
+        <th>Choice C</th>
+        <td><%= f.text_field(:answerC) %></td>
+      </tr>
+      <tr>
+        <th>Choice D</th>
+        <td><%= f.text_field(:answerD) %></td>
+      </tr>
+      <tr>
+        <th>Correct Answer</th>
+        <td><%= f.text_field(:solution) %></td>
+      </tr>
+      <tr>
+        <th>Position</th>
+        <td><%= f.text_field(:position) %></td>
+      </tr>
+      <tr>
+        <th>Visible</th>
+        <td><%= f.text_field(:visible) %></td>
+      </tr>
+    </table>
+    
+    <div class="form-buttons">
+      <%= submit_tag("Add New Question") %>
+    </div>
+    
+  <% end %>
+</div>

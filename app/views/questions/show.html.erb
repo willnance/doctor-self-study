@@ -1,0 +1,53 @@
+<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<%end%>
+<div class="question show">
+  <h2>Show question</h2>
+
+  <table summary="question detail view">
+    <tr>
+      <th>Question Subject</th>
+      <td><%= @question.subject%></td>
+    </tr>
+    <tr>
+      <th>Question</th>
+      <td><%= @question.question %></td>
+    </tr>
+    <tr>
+      <th>Answer Choice A</th>
+      <td><%= @question.answerA %></td>
+    </tr>
+    <tr>
+      <th>Answer Choice B</th>
+      <td><%= @question.answerB %></td>
+    </tr>
+    <tr>
+      <th>Answer Choice C</th>
+      <td><%= @question.answerC %></td>
+    </tr>
+    <tr>
+      <th>Answer Choice D</th>
+      <td><%= @question.answerD %></td>
+    </tr>
+    <tr>
+      <th>Position</th>
+      <td><%= @question.position %></td>
+    </tr>
+    <tr>
+      <th>Visible?</th>
+      <td><%= @question.visible ? 'true' : 'false' %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @question.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @question.updated_at %></td>
+    </tr>
+  </table>
+  
+</div>
