@@ -4,50 +4,36 @@
     <%= flash[:notice] %>
   </div>
 <%end%>
-<div class="question show">
-  <h2>Show question</h2>
+<div class="Admin show">
+  <h2>Show Admin</h2>
 
-  <table summary="question detail view">
+  <table summary="Admin detail view">
     <tr>
-      <th>Question Subject</th>
-      <td><%= @question.subject%></td>
+      <th>Admin First Name</th>
+      <td><%= @Admin.firstName%></td>
     </tr>
     <tr>
-      <th>Question</th>
-      <td><%= @question.question %></td>
+      <th>Admin Last Name</th>
+      <td><%= @Admin.lastName %></td>
     </tr>
     <tr>
-      <th>Answer Choice A</th>
-      <td><%= @question.answerA %></td>
+      <th>Username</th>
+      <td><%= @Admin.username %></td>
     </tr>
     <tr>
-      <th>Answer Choice B</th>
-      <td><%= @question.answerB %></td>
+      <th>Password</th>
+      <td><%= @Admin.hashedPassword %></td>
     </tr>
-    <tr>
-      <th>Answer Choice C</th>
-      <td><%= @question.answerC %></td>
-    </tr>
-    <tr>
-      <th>Answer Choice D</th>
-      <td><%= @question.answerD %></td>
-    </tr>
-    <tr>
-      <th>Position</th>
-      <td><%= @question.position %></td>
-    </tr>
-    <tr>
-      <th>Visible?</th>
-      <td><%= @question.visible ? 'true' : 'false' %></td>
-    </tr>
+    
     <tr>
       <th>Created</th>
-      <td><%= @question.created_at %></td>
+      <td><%= @Admin.created_at %></td>
     </tr>
     <tr>
-      <th>Updated</th>
-      <td><%= @question.updated_at %></td>
+      <th>Last Updated</th>
+      <td><%= @Admin.updated_at %></td>
     </tr>
   </table>
   
 </div>
+

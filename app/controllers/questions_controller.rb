@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   
-  
+  layout "admin"
   
   def index
     list

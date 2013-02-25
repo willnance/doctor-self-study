@@ -3,28 +3,28 @@
     <%= flash[:notice] %>
   </div>
 <%end%>
-<div class ="question list"> 
-  <h2> questions</h2>
-  <%= link_to("add new question", {:action => "new"}, :class=> 'action news') %>
-  <table class="listing" summary="question list">
+<div class ="Admin list"> 
+  <h2> Admins</h2>
+  <%= link_to("add new Admin", {:action => "new"}, :class=> 'action news') %>
+  <table class="listing" summary="Admin list">
     <tr class= "header">
       <th>&nbsp;</th>
       <th>ID</th>
-      <th>subject</th>
-      <th>Visible</th>
-      <th>Assigned on</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>username</th>
       <th>Actions</th>
     </tr>
-    <% @questions.each do |question| %>
+    <% @Admins.each do |admin| %>
     <tr>
-      <td><%=question.id %></td>
-      <td><%=question.subject %></td>
-      <td class= "center" ><%=question.visible ? 'Yes' : 'No' %></td>
-      <td><%=question.created_at %></td>
+      <td><%=admin.id %></td>
+      <td><%=admin.firstName %></td>
+      <td><%=admin.lastName %></td>
+      <td><%=admin.username %></td>
       <td class= "actions">
-        <%=  link_to("Show", {:action => 'show' , :id => question.id}, :class => 'action show') %>
-        <%=  link_to("Edit", {:action => "edit" , :id => question.id}, :class=>'action edit') %>
-        <%=  link_to("Delete", {:action => 'delete' , :id => question.id}, :class=>'action delete') %>
+        <%=  link_to("Show", {:action => 'show' , :id => admin.id}, :class => 'action show') %>
+        <%=  link_to("Edit", {:action => "edit" , :id => admin.id}, :class=>'action edit') %>
+        <%=  link_to("Delete", {:action => 'delete' , :id => admin.id}, :class=>'action delete') %>
       </td>
     </tr>
     <% end %>

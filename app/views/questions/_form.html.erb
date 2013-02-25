@@ -1,0 +1,34 @@
+ <table summary="question form fields">
+      <tr>
+        <th>Question Subject</th>
+        <td><%= f.text_field(:subject) %></td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td><%= f.text_field(:question) %></td>
+      </tr>
+      <tr>
+        <th>Choice A</th>
+        <td><%= f.text_field(:answerA) %></td>
+      </tr>
+      <tr>
+        <th>Choice B</th>
+        <td><%= f.text_field(:answerB) %></td>
+      </tr>
+      <tr>
+        <th>Choice C</th>
+        <td><%= f.text_field(:answerC) %></td>
+      </tr>
+      <tr>
+        <th>Choice D</th>
+        <td><%= f.text_field(:answerD) %></td>
+      </tr>
+      <tr>
+        <th>Correct Answer</th>
+        <td><%= f.text_field(:solution) %></td>
+      </tr>
+      <tr>
+        <th>Visible</th>
+        <td><%= f.check_box(:visible) %></td>
+      </tr>
+    </table>

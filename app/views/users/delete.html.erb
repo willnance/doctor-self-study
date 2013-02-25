@@ -1,17 +1,17 @@
 
 <%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
 
-<div class="question delete">
-  <h2>Delete question</h2>
+<div class="User delete">
+  <h2>Delete User</h2>
   
-  <%= form_for(:question, :url => {:action => 'destroy', :id => @question.id}) do |f| -%>
+  <%= form_for(:User, :url => {:action => 'destroy', :id => @User.id}) do |f| -%>
 
-    <p>Are you sure you want to permanently delete this question?</p>
+    <p>Are you sure you want to permanently delete this User?</p>
   
-    <p class="reference-name"><%= @question.question %></p>
+    <p class="reference-name"><%= @User.firstName %> <%= @User.lastName %> </p>
   
     <div class="form-buttons">
-      <%= submit_tag("Delete question") %>
+      <%= submit_tag("Delete User") %>
     </div>
     
   <% end %>

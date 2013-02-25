@@ -1,53 +1,41 @@
 
 <%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
 
-<div class="question new">
-  <h2>Create Question</h2>
+<div class="User new">
+  <h2>Create User</h2>
 
-  <%= form_for(:question, :url => {:action => 'create'}) do |f| %>
+  <%= form_for(:User, :url => {:action => 'create'}) do |f| %>
   
-    <table summary="Question form fields">
+    <table summary="User form fields">
       <tr>
-        <th>Question Subject</th>
-        <td><%= f.text_field(:subject) %></td>
+        <th>First Name</th>
+        <td><%= f.text_field(:firstName) %></td>
       </tr>
       <tr>
-        <th>Question</th>
-        <td><%= f.text_field(:question) %></td>
+        <th>Last Name</th>
+        <td><%= f.text_field(:lastName) %></td>
       </tr>
       <tr>
-        <th>Choice A</th>
-        <td><%= f.text_field(:answerA) %></td>
+        <th>Username</th>
+        <td><%= f.text_field(:username) %></td>
       </tr>
       <tr>
-        <th>Choice B</th>
-        <td><%= f.text_field(:answerB) %></td>
+        <th> Password </th>
+        <td><%= f.text_field(:hashedPassword) %></td>
       </tr>
       <tr>
-        <th>Choice C</th>
-        <td><%= f.text_field(:answerC) %></td>
-      </tr>
-      <tr>
-        <th>Choice D</th>
-        <td><%= f.text_field(:answerD) %></td>
-      </tr>
-      <tr>
-        <th>Correct Answer</th>
-        <td><%= f.text_field(:solution) %></td>
-      </tr>
-      <tr>
-        <th>Position</th>
-        <td><%= f.text_field(:position) %></td>
-      </tr>
-      <tr>
-        <th>Visible</th>
-        <td><%= f.text_field(:visible) %></td>
+        <th>Year</th>
+        <td><%= f.text_field(:year) %></td>
       </tr>
     </table>
     
     <div class="form-buttons">
-      <%= submit_tag("Add New Question") %>
+      <%= submit_tag("Add New User") %>
     </div>
     
   <% end %>
 </div>
+
+
+
+
