@@ -1,0 +1,33 @@
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<%end%>
+<div class ="question list"> 
+  <h2> questions</h2>
+  <%= link_to("add new question", {:action => "new"}, :class=> 'action news') %>
+  <table class="listing" summary="question list">
+    <tr class= "header">
+      <th>&nbsp;</th>
+      <th>ID</th>
+      <th>subject</th>
+      <th>Visible</th>
+      <th>Assigned on</th>
+      <th>Actions</th>
+    </tr>
+    <% @questions.each do |question| %>
+    <tr>
+      <td><%=question.id %></td>
+      <td><%=question.subject %></td>
+      <td class= "center" ><%=question.visible ? 'Yes' : 'No' %></td>
+      <td><%=question.created_at %></td>
+      <td class= "actions">
+        <%=  link_to("Show", {:action => 'show' , :id => question.id}, :class => 'action show') %>
+        <%=  link_to("Edit", {:action => "edit" , :id => question.id}, :class=>'action edit') %>
+        <%=  link_to("Delete", {:action => 'delete' , :id => question.id}, :class=>'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+     
