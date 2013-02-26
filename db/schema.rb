@@ -17,7 +17,9 @@ ActiveRecord::Schema.define(:version => 20130219030257) do
     t.string   "firstName"
     t.string   "lastName"
     t.string   "username"
+    t.string   "email"
     t.string   "hashedPassword"
+    t.string   "salt"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

@@ -47,6 +47,11 @@
       <th>Updated</th>
       <td><%= @question.updated_at %></td>
     </tr>
+    <tr>
+      <th>JSON view</th>
+      <td> <%= @question.to_json %>      </td>
+      
+    </tr>
   </table>
   
 </div>

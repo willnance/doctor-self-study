@@ -1,11 +1,11 @@
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-<%end%>
+
+
 <div class ="User list"> 
+  
   <h2> Users</h2>
-  <%= link_to("add new User", {:action => "new"}, :class=> 'action news') %>
+  <%=link_to( "<< Back to Main menu" , :controller => "access" , :action => :menu)%>
+  <br/>
+  <%= link_to("Add new User", {:action => "new"}, :class=> 'action news') %>
   <table class="listing" summary="user list">
     <tr class= "header">
       <th>&nbsp;</th>

@@ -1,6 +1,9 @@
 <div class ="question list"> 
   <h2> questions</h2>
+  <%=link_to( "<<< Back to Main menu" , :controller => "access" , :action => :menu)%>
+  <br/>
   <%= link_to("add new question", {:action => "new"}, :class=> 'action news') %>
+  <div class =" identity">Logged in as: <%= session[:username]%> </div>
   <table class="listing" summary="question list">
     <tr class= "header">
       <th>&nbsp;</th>
