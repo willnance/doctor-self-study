@@ -2,13 +2,12 @@ class AdminsController < ApplicationController
   before_filter :confirm_logged_in
   
   def index
-    list
-    render('list')
-  end
-  
-  def list
     @Admins = Admin.order("Admins.firstName ASC")
   end
+  
+#  def list
+#    
+#  end
   
   def show
     @Admin = Admin.find(params[:id])
@@ -20,8 +19,9 @@ class AdminsController < ApplicationController
     @Admin = Admin.new(params[:Admin])
     if @Admin.save
       flash[:notice] = "Admin created Successfully"
-      redirect_to(:action => 'list')
+      redirect_to(:action => 'show', :id => @Admin.id)
     else
+      flash[:notice] = "an error occurred"
       render('new')
     end
     
@@ -31,10 +31,9 @@ class AdminsController < ApplicationController
   end
   def update
     @Admin = Admin.find(params[:id])
-    @Admin.update_attributes(params[:Admin])
-    if @Admin.save
+    if @Admin.update_attributes(params[:Admin])
       flash[:notice] = "Admin updated Successfully"
-      redirect_to(:action => 'show', :id => @Admin.id)
+      redirect_to(admins_path)
     else
       render('edit')
     end
@@ -46,7 +45,7 @@ class AdminsController < ApplicationController
     @Admin = Admin.find(params[:id])
     @Admin.destroy
     flash[:notice] = "Admin destroyed Successfully"
-    redirect_to(:action => 'list')
+    redirect_to(admins_path)
   end
 end
 

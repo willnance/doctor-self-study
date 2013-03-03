@@ -2,12 +2,12 @@
 
 
 
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", questions_path, :class => 'back-link') %>
 
 <div class="question new">
   <h2>Create Question</h2>
 
-  <%= form_for(:question, :url => {:action => 'create'}) do |f| %>
+  <%= form_for(:question, :url => questions_path , :html => {:method => :post}) do |f| %>
   
     <%= render( :partial => "form", :locals => {:f => f}) %>
     <div class="form-buttons">

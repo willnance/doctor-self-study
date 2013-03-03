@@ -28,6 +28,14 @@
         <td><%= f.text_field(:solution) %></td>
       </tr>
       <tr>
+        <th>f.label(:rotation)</th>
+        <td><%=f.select(:rotation, 1..10,{:include_blank => 'all rotations'})%></td> 
+      </tr>
+      <tr>
+        <th>f.label(:year)</th>
+        <td><%=f.select(:year, 1..10,{:include_blank => 'all years'})%></td> 
+      </tr>
+      <tr>
         <th>Visible</th>
         <td><%= f.check_box(:visible) %></td>
       </tr>

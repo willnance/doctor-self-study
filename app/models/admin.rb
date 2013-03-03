@@ -1,10 +1,10 @@
 require 'Digest/SHA2'
 class Admin < ActiveRecord::Base
-  
+  scope :sorted ,  order("Admin.firstName ASC , Admin.lastName ACS")
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   before_save :create_hashed_password
   after_save :clear_password
-  attr_accessible :title, :body, :firstName, :lastName, :username, :hashedPassword , :email , :salt
+  attr_accessible :title, :body, :firstName, :lastName, :username, :hashedPassword , :email , :salt , :password
   validates :firstName , :presence => true, :length => {:maximum=> 25}
   validates :lastName , :presence => true, :length => {:maximum=> 50}
   validates :username , :presence => true, :length => {:within=> 8..25}, :uniqueness => true
@@ -12,8 +12,9 @@ class Admin < ActiveRecord::Base
   attr_accessor :password
   validates_length_of :password, :within => 8..25, :on => :create
   
-
-  
+  def name
+    "#{firstName} #{lastName}"
+  end
   def self.authenticate(username="",  password="")
     user = Admin.find_by_username(username)
     if user  && user.password_match?(password)
@@ -21,13 +22,7 @@ class Admin < ActiveRecord::Base
     else 
       return false
     end
-    
-   
-   
   end
- 
- 
- 
   def self.hash_with_salt(password="", salt = "")
     Digest::SHA2.hexdigest("put #{salt} on the #{password}")
   end
@@ -49,7 +44,4 @@ class Admin < ActiveRecord::Base
   def clear_password
     self.password=nil
   end
-
-
-
 end

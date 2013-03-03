@@ -1,18 +1,28 @@
 class QuestionsController < ApplicationController
-  before_filter :confirm_logged_in
+  #before_filter :confirm_logged_in
   layout "admin"
+  respond_to :json
   
   def index
-    list
-    render('list')
+    @questions = Question.order("questions.position ASC")    
+    respond_to do |format| 
+      format.html 
+      format.json {render(  :json => @questions)}
+    end
   end
   
-  def list
-    @questions = Question.order("questions.position ASC")
-  end
+#  def list
+#    @questions = Question.order("questions.position ASC")
+#    
+#    #respond_with @questions
+#  end
   
   def show
     @question = Question.find(params[:id])
+    respond_to do |format| 
+      format.html 
+      format.json {render(  :json => @question)}
+    end
   end
   def new
     @question = Question.new
@@ -21,7 +31,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(params[:question])
     if @question.save
       flash[:notice] = "Question created Successfully"
-      redirect_to(:action => 'list')
+      redirect_to(questions_path)
     else
       render('new')
     end
@@ -47,7 +57,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
     flash[:notice] = "Question destroyed Successfully"
-    redirect_to(:action => 'list')
+    redirect_to(questions_path)
   end
   
   

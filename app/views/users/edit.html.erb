@@ -5,28 +5,7 @@
   <h2>Update User</h2>
 
   <%= form_for(:User, :url => {:action => 'update', :id => @User.id}) do |f| %>
-    <table summary="User form fields">
-      <tr>
-        <th>First Name</th>
-        <td><%= f.text_field(:firstName) %></td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td><%= f.text_field(:lastName) %></td>
-      </tr>
-      <tr>
-        <th>Username</th>
-        <td><%= f.text_field(:username) %></td>
-      </tr>
-      <tr>
-        <th> Password </th>
-        <td><%= f.text_field(:hashedPassword) %></td>
-      </tr>
-      <tr>
-        <th>Year</th>
-        <td><%= f.text_field(:year) %></td>
-      </tr>
-    </table>
+    <%=  render(:partial => "form" , :locals => {:f => f})  %>
     
     <div class="form-buttons">
       <%= submit_tag("Update User") %>

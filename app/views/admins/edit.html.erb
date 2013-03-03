@@ -1,28 +1,11 @@
 
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", admins_path, :class => 'back-link') %>
 
 <div class="Admin edit">
   <h2>Update Administrators</h2>
-
-  <%= form_for(:Admin, :url => {:action => 'update', :id => @Admin.id}) do |f| %>
-    <table summary="Admin form fields">
-      <tr>
-        <th>First Name</th>
-        <td><%= f.text_field(:firstName) %></td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td><%= f.text_field(:lastName) %></td>
-      </tr>
-      <tr>
-        <th>username</th>
-        <td><%= f.text_field(:username) %></td>
-      </tr>
-      <tr>
-        <th> Password </th>
-        <td><%= f.text_field(:hashedPassword) %></td>
-      </tr>
-    </table>
+<%  #{:action => 'update', :id => @Admin.id}%>
+  <%= form_for(:Admin, :url => admin_path(@Admin.id), html => {:method=> :put} ) do |f| %> 
+    <%=render(:partial => "form",  :locals => {:f=>f})%>
     
     <div class="form-buttons">
       <%= submit_tag("Update Admin") %>

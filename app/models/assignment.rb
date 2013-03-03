@@ -3,5 +3,5 @@ class Assignment < ActiveRecord::Base
   belongs_to :question
   
   
-  # attr_accessible :title, :body
+  attr_accessible :title, :body, :user_id, :question_id
 end

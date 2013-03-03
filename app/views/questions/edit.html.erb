@@ -1,10 +1,10 @@
-
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%#{:action => 'list'} %>
+<%= link_to("<< Back to List", questions_path , :class => 'back-link') %>
 
 <div class="Question edit">
   <h2>Update Question</h2>
-
-  <%= form_for(:question, :url => {:action => 'update', :id => @question.id}) do |f| %>
+<%#{:action => 'update', :id => @question.id}%>
+  <%= form_for(:question, :url => question_path(@question.id), :html => {:method=> :put}) do |f| %> 
    <%= render( :partial => "form", :locals => {:f => f}) %>
     
     <div class="form-buttons">

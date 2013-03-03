@@ -1,4 +1,4 @@
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
 <% if !flash[:notice].blank? %>
   <div class="notice">
     <%= flash[:notice] %>
@@ -21,7 +21,7 @@
       <td><%= @Admin.username %></td>
     </tr>
     <tr>
-      <th>Password</th>
+      <th>Hashed Password</th>
       <td><%= @Admin.hashedPassword %></td>
     </tr>
     

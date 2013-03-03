@@ -14,7 +14,7 @@ class AccessController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:username] = authorized_user.username
-      flash[:notice] = "You ar successully logged in"
+      flash[:notice] = "You are successully logged in"
       redirect_to(:action => menu)
     else
       flash[:notice] = "Invalid Username and password combination"
@@ -30,6 +30,5 @@ class AccessController < ApplicationController
     session[:username] = nil
     flash[:notice] = "You have been successfully logged out."
     redirect_to( :action => "login")
-    
   end
 end

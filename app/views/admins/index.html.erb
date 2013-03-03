@@ -5,7 +5,9 @@
 <%end%>
 <div class ="Admin list"> 
   <h2> Admins</h2>
-  <%= link_to("add new Admin", {:action => "new"}, :class=> 'action news') %>
+  <%= link_to( "<< Back to main Menu" , {:controller => "access"  }) %> 
+  <br/>
+  <%=   link_to("Add new Admin", {:action => "new"}, :class=> 'action news') %>
   <table class="listing" summary="Admin list">
     <tr class= "header">
       <th>&nbsp;</th>
@@ -17,6 +19,7 @@
     </tr>
     <% @Admins.each do |admin| %>
     <tr>
+      <td>&nbsp;</td>
       <td><%=admin.id %></td>
       <td><%=admin.firstName %></td>
       <td><%=admin.lastName %></td>
