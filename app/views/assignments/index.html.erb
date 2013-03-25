@@ -1,0 +1,32 @@
+<div class ="question list"> 
+  <h2> questions</h2>
+  <%=link_to( "<<< Back to Main menu" , :controller => "access" , :action => :menu)%>
+  <br/>
+  <%= link_to("add new question", {:action => "new"}, :class=> 'action news') %>
+  <div class =" identity">Logged in as: <%= session[:username]%> </div>
+  <table class="listing" summary="question list">
+    <tr class= "header">
+      <th>&nbsp;</th>
+      <th>ID</th>
+      <th>subject</th>
+      <th>Visible</th>
+      <th>Assigned on</th>
+      <th>Actions</th>s
+    </tr>
+    <% @questions.each do |question| %>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%=question.id %></td>
+      <td><%=question.subject %></td>
+      <td class= "center" ><%=question.visible ? 'Yes' : 'No' %></td>
+      <td><%=question.created_at %></td>
+      <td class= "actions">
+        <%=  link_to("Show", question_path(question.id) , :html  => {:method => :get}, :class => 'action show') %>
+        <%=  link_to("Edit", edit_question_path(question.id) , :html => {:method => :get}, :class=>'action edit') %>
+        <%=  link_to("Delete", delete_question_path(question.id), :html => {:method => :get}, :class=>'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+     
