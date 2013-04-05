@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20130326185605) do
     t.datetime "updated_at", :null => false
     t.integer  "year"
     t.integer  "rotation"
-    t.date     "schedule"
+    t.datetime "schedule"
   end
 
   create_table "users", :force => true do |t|

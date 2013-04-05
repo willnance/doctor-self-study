@@ -27,11 +27,11 @@
     
     <tr>
       <th>Created</th>
-      <td><%= @Admin.created_at %></td>
+      <td><%= @Admin.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
     </tr>
     <tr>
       <th>Last Updated</th>
-      <td><%= @Admin.updated_at %></td>
+      <td><%= @Admin.updated_at.strftime("%b. %d %Y %H:%M" )) %></td>
     </tr>
   </table>
   

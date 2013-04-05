@@ -32,25 +32,28 @@
       <td><%= @question.answerD %></td>
     </tr>
     <tr>
-      <th>Position</th>
-      <td><%= @question.position %></td>
-    </tr>
-    <tr>
-      <th>Visible?</th>
-      <td><%= @question.visible ? 'true' : 'false' %></td>
-    </tr>
-    <tr>
       <th>Created</th>
-      <td><%= @question.created_at %></td>
+      <td><%= @question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
+    </tr>
+    <tr>
+      <th>Assigned to Rotation:</th>
+      <td><%= @question.rotation %></td>
+    </tr>
+    <tr>
+      <th>Assigned to Year:</th>
+      <td><%= @question.year %></td>
     </tr>
     <tr>
       <th>Updated</th>
-      <td><%= @question.updated_at %></td>
+      <td><%= @question.updated_at.strftime("%d %b. %Y %H:%M" ) %></td>
+    </tr>
+    <tr>
+      <th>Push at: </th>
+      <td><%= @question.schedule.strftime("%d %b. %Y %H:%M" ) %></td>
     </tr>
     <tr>
       <th>JSON view</th>
       <td> <%= @question.to_json %>      </td>
-      
     </tr>
   </table>
   

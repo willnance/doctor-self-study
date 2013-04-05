@@ -1,13 +1,29 @@
 DoctorSelfStudy::Application.routes.draw do
 
-
-  root :to => "question#index"
+  root :to => "access#index"
+  
   #match 'admin' , :to => 'access#menu'
   resources :questions do
     member do
       get :delete
     end
   end
+  resources :users do
+    resources :assignments do
+      member do
+        get :delete
+      end
+    end
+    resources :questions do
+      member do
+        get :delete
+      end
+    end
+    member do
+      get :delete
+    end
+  end
+  
   
   resources :admins do
     member do

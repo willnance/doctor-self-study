@@ -5,13 +5,13 @@
   <h2>Create new Administrator</h2>
 
   <%= form_for(:Admin, :url => admins_path , :html => {:method => :post}) do |f| %>
-  
+
     <%= render( :partial => "form", :locals => {:f => f}) %>
-    
+
     <div class="form-buttons">
       <%= submit_tag("Add New Administrator") %>
     </div>
-    
+
   <% end %>
 </div>
 

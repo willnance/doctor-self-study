@@ -1,6 +1,6 @@
 class AlterQuestionsAndAssignments < ActiveRecord::Migration
   def up
-    add_column("questions" , "schedule", :date)
+    add_column("questions" , "schedule", :datetime)
     add_column("assignments", "correct" , :boolean)
   end
 

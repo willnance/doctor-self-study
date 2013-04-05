@@ -3,9 +3,11 @@
 <div class ="User list"> 
   
   <h2> Users</h2>
-  <%=link_to( "<< Back to Main menu" , :controller => "access" , :action => :menu)%>
+  <%=link_to("Back to Main menu" , :controller => "access" , :action => :menu)%>
   <br/>
+  
   <%= link_to("Add new User", {:action => "new"}, :class=> 'action news') %>
+  <div class =" identity">Logged in as: <%= session[:username]%> </div>
   <table class="listing" summary="user list">
     <tr class= "header">
       <th>&nbsp;</th>
@@ -22,9 +24,10 @@
       <td><%=user.lastName %></td>
       <td><%=user.username %></td>
       <td class= "actions">
-        <%=  link_to("Show", {:action => 'show' , :id => user.id}, :class => 'action show') %>
-        <%=  link_to("Edit", {:action => "edit" , :id => user.id}, :class=>'action edit') %>
-        <%=  link_to("Delete", {:action => 'delete' , :id => user.id}, :class=>'action delete') %>
+        <%=  link_to("Show", user_path(user.id) , :html  => {:method => :get}, :class => 'action show') %>
+        <%=  link_to("Edit", edit_user_path(user.id) , :html => {:method => :get}, :class=>'action edit') %>
+        <%=  link_to("Delete", delete_user_path(user.id), :html => {:method => :get}, :class=>'action delete') %>
+        <%= link_to( "View Assignments" , user_assignments_path(user), :html =>{:method=> :get, :class => 'action assignment',:id => user.id}  ) %>
       </td>
     </tr>
     <% end %>

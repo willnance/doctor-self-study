@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   respond_to :json
   
   def index
-    @questions = Question.order("questions.position ASC")    
+    @questions = Question.order("id ASC")    
     respond_to do |format| 
       format.html 
       format.json {render(  :json => @questions)}
@@ -25,7 +25,8 @@ class QuestionsController < ApplicationController
     end
   end
   def new
-    @question = Question.new
+    @user = User.find_by_id(params[:user_id]) if params[:user_id]
+    @question = Question.new(:year => @user.year, :rotation => @user.rotation)
   end
   def create
     @question = Question.new(params[:question])

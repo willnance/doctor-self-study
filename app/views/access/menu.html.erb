@@ -1,13 +1,4 @@
 <%@page_title = "Admin Menu"%>
 
-<div class="menu">
-  <h2>Admin Menu</h2>
-  <div class =" identity">Logged in as: <%= session[:username]%> </div>
-  <ul>
-    <li> <%= link_to("Manage Questions", :controller => "questions") %> </li>
-    <li> <%= link_to("Manage Assignments", :controller => "assignments") %> </li>
-    <li> <%= link_to("Manage Users", :controller => "users") %> </li>
-    <li> <%= link_to("Manage Admin Users", :controller => "admins") %> </li>
-    <li> <%= link_to("Logout", :action => "logout") %> </li>
-  </ul>
-</div>
+<!The menu appears automatically in the global template so nothing to do here
+  We still need to make sure this displays nicely instead of a nav bar at the side>

@@ -1,17 +1,17 @@
 
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", users_path, :class => 'back-link') %>
 
 <div class="User new">
   <h2>Create User</h2>
 
-  <%= form_for(:User, :url => {:action => 'create'}) do |f| %>
-  
+  <%= form_for(:User, :url => users_path , :html => {:method => :post}) do |f| %>
+
     <%=  render(:partial => "form" , :locals => {:f => f})  %>
-    
+
     <div class="form-buttons">
       <%= submit_tag("Add New User") %>
     </div>
-    
+
   <% end %>
 </div>
 

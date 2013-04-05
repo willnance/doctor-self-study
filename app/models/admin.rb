@@ -1,4 +1,4 @@
-require 'Digest/SHA2'
+require 'digest/sha2'
 class Admin < ActiveRecord::Base
   scope :sorted ,  order("Admin.firstName ASC , Admin.lastName ACS")
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i

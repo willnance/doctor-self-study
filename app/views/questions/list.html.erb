@@ -9,7 +9,7 @@
       <th>&nbsp;</th>
       <th>ID</th>
       <th>subject</th>
-      <th>Visible</th>
+      
       <th>Assigned on</th>
       <th>Actions</th>s
     </tr>
@@ -17,9 +17,9 @@
     <tr>
       <td>&nbsp;</td>
       <td><%=question.id %></td>
-      <td><%=question.subject %></td>
-      <td class= "center" ><%=question.visible ? 'Yes' : 'No' %></td>
-      <td><%=question.created_at %></td>
+      <td><%=question.subject.strftime("%b. %d %Y %H:%M" ) %></td>
+      
+      <td><%=question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
       <td class= "actions">
         <%=  link_to("Show", question_path(question.id) , :html  => {:method => :get}, :class => 'action show') %>
         <%=  link_to("Edit", edit_question_path(question.id) , :html => {:method => :get}, :class=>'action edit') %>

@@ -1,4 +1,5 @@
- <table summary="question form fields">
+
+<table summary="question form fields">
       <tr>
         <th>Question Subject</th>
         <td><%= f.text_field(:subject) %></td>
@@ -28,15 +29,16 @@
         <td><%= f.text_field(:solution) %></td>
       </tr>
       <tr>
-        <th>f.label(:rotation)</th>
+        <th><%=f.label(:rotation)%></th>
         <td><%=f.select(:rotation, 1..10,{:include_blank => 'all rotations'})%></td> 
       </tr>
       <tr>
-        <th>f.label(:year)</th>
+        <th><%=f.label(:year)%></th>
         <td><%=f.select(:year, 1..10,{:include_blank => 'all years'})%></td> 
       </tr>
       <tr>
-        <th>Visible</th>
-        <td><%= f.check_box(:visible) %></td>
+        <th>Time to Push</th>
+        <td><%= f.datetime_select(:schedule , :order => [ :month , :day , :year]) %></td>
       </tr>
+      
     </table>

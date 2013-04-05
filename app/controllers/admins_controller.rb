@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   before_filter :confirm_logged_in
-  
+  layout 'admin'
   def index
     @Admins = Admin.order("Admins.firstName ASC")
   end

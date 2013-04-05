@@ -2,16 +2,22 @@ class UsersController < ApplicationController
   before_filter :confirm_logged_in
   layout "admin"
   def index
-    list
-    render('list')
-  end
-  
-  def list
     @Users = User.order("Users.year ASC")
+    respond_to do |format| 
+      format.html 
+      format.json {render(  :json => @Users)}
+    end
   end
+#  def list
+#    @Users = User.order("Users.year ASC")
+#  end
   
   def show
     @User = User.find(params[:id])
+    respond_to do |format| 
+      format.html 
+      format.json {render(  :json => @User)}
+    end
   end
   def new
     @User = User.new
@@ -20,11 +26,10 @@ class UsersController < ApplicationController
     @User = User.new(params[:User])
     if @User.save
       flash[:notice] = "User created Successfully"
-      redirect_to(:action => 'list')
+      redirect_to(:action => 'index')
     else
       render('new')
-    end
-    
+    end   
   end
   def edit
     @User = User.find(params[:id])
@@ -46,6 +51,6 @@ class UsersController < ApplicationController
     @User = User.find(params[:id])
     @User.destroy
     flash[:notice] = "User destroyed Successfully"
-    redirect_to(:action => 'list')
+    redirect_to(users_path)
   end
 end

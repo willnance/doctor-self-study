@@ -9,7 +9,7 @@
 
   <%= form_for(:question, :url => questions_path , :html => {:method => :post}) do |f| %>
   
-    <%= render( :partial => "form", :locals => {:f => f}) %>
+    <%= render( :partial => "form", :locals => {:f => f }) %>
     <div class="form-buttons">
       <%= submit_tag("Add New Question") %>
     </div>
