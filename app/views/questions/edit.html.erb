@@ -4,7 +4,7 @@
 <div class="Question edit">
   <h2>Update Question</h2>
 <%#{:action => 'update', :id => @question.id}%>
-  <%= form_for(:question, :url => question_path(@question.id), :html => {:method=> :put}) do |f| %> 
+  <%= form_for(:question, :url => question_path(@question.id), :html => {:method=> :put} ) do |f| %> 
    <%= render( :partial => "form", :locals => {:f => f}) %>
     
     <div class="form-buttons">

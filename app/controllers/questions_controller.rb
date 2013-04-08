@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  #before_filter :confirm_logged_in
+  
+  before_filter :confirm_admin
   layout "admin"
   respond_to :json
   
@@ -26,7 +27,7 @@ class QuestionsController < ApplicationController
   end
   def new
     @user = User.find_by_id(params[:user_id]) if params[:user_id]
-    @question = Question.new(:year => @user.year, :rotation => @user.rotation)
+    @question = Question.new()
   end
   def create
     @question = Question.new(params[:question])

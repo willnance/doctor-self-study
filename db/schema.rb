@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326185605) do
+ActiveRecord::Schema.define(:version => 20130406184111) do
 
   create_table "admins", :force => true do |t|
     t.string   "firstName"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20130326185605) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.boolean  "correct"
+    t.boolean  "responded"
+    t.boolean  "blank"
   end
 
   add_index "assignments", ["user_id", "question_id"], :name => "index_assignments_on_user_id_and_question_id"
@@ -43,11 +45,12 @@ ActiveRecord::Schema.define(:version => 20130326185605) do
     t.text     "answerC"
     t.text     "answerD"
     t.text     "solution"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "year"
     t.integer  "rotation"
     t.datetime "schedule"
+    t.string   "explanation"
   end
 
   create_table "users", :force => true do |t|
@@ -59,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20130326185605) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "rotation"
+    t.string   "salt"
+    t.string   "email"
   end
 
 end

@@ -24,16 +24,17 @@
       <th>Assigned on</th>
       <th>Actions</th>
     </tr>
-    <% @questions.each do |question| %>
+    <% @assignments.each do |assignment| %>
     <tr>
       <td>&nbsp;</td>
-      <td><%=question.id %></td>
-      <td><%=question.subject %></td>
-      <td><%=question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
+      <td><%=assignment.question.id %></td>
+      <td><%=assignment.question.subject %></td>
+      <td><%=assignment.question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
       <td class= "actions">
-        <%=  link_to("Show", question_path(question.id) , :html  => {:method => :get}, :class => 'action show') %>
-        <%=  link_to("Edit", edit_question_path(question.id) , :html => {:method => :get}, :class=>'action edit') %>
-        <%=  link_to("Delete", delete_question_path(question.id), :html => {:method => :get}, :class=>'action delete') %>
+        <%=  link_to("Show", question_path(assignment.question.id) , :html  => {:method => :get}, :class => 'action show') %>
+        <%=  link_to("Edit", edit_question_path(assignment.question.id) , :html => {:method => :get}, :class=>'action edit') %>
+        <%=  link_to("Delete", delete_question_path(assignment.question.id), :html => {:method => :get}, :class=>'action delete') %>
+        <%=  link_to("Edit Response", :controller => "assignments" , :action=> 'respond', :id => assignment.id, :user_id => params[:id], :class=>'action edit-response') %>
       </td>
     </tr>
     <% end %>

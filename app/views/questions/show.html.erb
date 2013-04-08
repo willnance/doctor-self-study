@@ -32,6 +32,10 @@
       <td><%= @question.answerD %></td>
     </tr>
     <tr>
+      <th>Solution</th>
+      <td><%= @question.solution %></td>
+    </tr>
+    <tr>
       <th>Created</th>
       <td><%= @question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
     </tr>
@@ -51,10 +55,7 @@
       <th>Push at: </th>
       <td><%= @question.schedule.strftime("%d %b. %Y %H:%M" ) %></td>
     </tr>
-    <tr>
-      <th>JSON view</th>
-      <td> <%= @question.to_json %>      </td>
-    </tr>
+    
   </table>
   
 </div>

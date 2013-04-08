@@ -2,20 +2,40 @@
 
 <div class="login">
   <h2>Please Log In</h2>
-  <%= form_tag(:action=> "attempt_login") do %>
-  <table>
-    <tr>
-      <td><%= label_tag(:username)%> </td>
-      <td><%= text_field_tag(:username)%></td>
-    </tr>
-    <tr>
-      <td><%= label_tag(:password)%> </td>
-      <td><%= password_field_tag(:password)%></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><%= submit_tag("Log In")%></td>
-    </tr>
-  </table>
+  <%if params[:assignment_id]%>
+    <%= form_tag(:action=> "attempt_login",:assignment_id => params[:id]) do %>
+      <table>
+        <tr>
+          <td><%= label_tag(:username)%> </td>
+          <td><%= text_field_tag(:username)%></td>
+        </tr>
+        <tr>
+          <td><%= label_tag(:password)%> </td>
+          <td><%= password_field_tag(:password)%></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><%= submit_tag("Log In")%></td>
+        </tr>
+      </table>
+    <%end%>
+  <%else%>
+    <%= form_tag(:action=> "attempt_login") do %>
+      <table>
+        <tr>
+          <td><%= label_tag(:username)%> </td>
+          <td><%= text_field_tag(:username)%></td>
+        </tr>
+        <tr>
+          <td><%= label_tag(:password)%> </td>
+          <td><%= password_field_tag(:password)%></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><%= submit_tag("Log In")%></td>
+        </tr>
+      </table
+    <%end%>
   <%end%>
+
 </div>

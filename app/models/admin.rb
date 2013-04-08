@@ -1,5 +1,9 @@
 require 'digest/sha2'
+#ALL jobs and models must extend the Autoscaling module for cheap Heroku deployment
+require 'heroku_resque_auto_scale'
 class Admin < ActiveRecord::Base
+  extend HerokuAutoScaler::AutoScaling
+
   scope :sorted ,  order("Admin.firstName ASC , Admin.lastName ACS")
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   before_save :create_hashed_password

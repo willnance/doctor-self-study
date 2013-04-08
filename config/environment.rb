@@ -5,5 +5,4 @@ require File.expand_path('../application', __FILE__)
 DoctorSelfStudy::Application.initialize!
 
 
-
 require 'digest/sha2'

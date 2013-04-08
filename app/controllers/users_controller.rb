@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :confirm_logged_in
+  before_filter :confirm_admin , :except => [:show]
   layout "admin"
   def index
     @Users = User.order("Users.year ASC")

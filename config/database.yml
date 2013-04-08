@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
+  reconnect: true
   database: doctor self study_development
   pool: 5
   username: root
@@ -32,7 +32,7 @@ test:
   host: localhost
 
 production:
-  adapter: mysql2
+  adapter: pg
   encoding: utf8
   reconnect: false
   database: doctor self study_production

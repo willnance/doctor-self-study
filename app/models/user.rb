@@ -1,16 +1,36 @@
 require 'digest/sha2'
-class User < ActiveRecord::Base
+require "QuestionMailer"
+#ALL jobs and models must extend the Autoscaling module for cheap Heroku deployment
+require 'heroku_resque_auto_scale'
+class User < ActiveRecord::Base 
+  extend HerokuAutoScaler::AutoScaling
   has_many :assignments
   has_many :questions , :through => :assignments
+  before_save :create_hashed_password
+  after_save :clear_password
   after_save :assign_questions
   after_create :assign_questions
+  after_create :deliverWelcome
   attr_accessor :password
-  attr_accessible :title, :body, :firstName, :lastName, :username ,:hashedPassword,:year, :rotation,  :password
+  attr_accessible :title, :body, :firstName, :lastName, :username ,:hashedPassword,:year, :rotation,  :password , :email
+  
+  def deliverWelcome
+   QuestionMailer.deliver_welcome(self)
+  end
   
   def assign_questions
     self.assignments = self.assignments.destroy
     make_assignments(filtered_questions())
     make_assignments(universal_questions())
+    clear_old_assignments
+  end
+  def clear_old_assignments
+    nil_user = Assignment.where(:user_id => nil)
+    nil_question =Assignment.where(:question_id => nil)
+    nil_user.each do |a|
+      nil_question << a
+    end
+    nil_question.each do |a| a.destroy end
   end
   def filtered_questions
     assigned_questions = Question.scoped
@@ -39,8 +59,13 @@ class User < ActiveRecord::Base
   end
   
   
-  def self.authenticate(username="",  passwordHash="")
-    
+  def self.authenticate(username="",  password="")
+    user = User.find_by_username(username)
+    if user  && user.password_match?(password)
+      return user 
+    else 
+      return false
+    end
   end
   def self.hash_with_salt(password="", salt = "")
     Digest::SHA2.hexdigest("put #{salt} on the #{password}")

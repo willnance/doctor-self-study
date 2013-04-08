@@ -20,16 +20,22 @@
           </div>
         <% end %>
         <div id="content">
-          <div class="menu">
-            <h2>Admin Menu</h2>
-            <div class =" identity">Logged in as: <%= session[:username]%> </div>
-            <ul>
-              <li> <%= link_to("Manage Questions", :controller => "questions") %> </li>
-              <li> <%= link_to("Manage Assignments", :controller => "assignments") %> </li>
-              <li> <%= link_to("Manage Users", :controller => "users") %> </li>
-              <li> <%= link_to("Manage Admin Users", :controller => "admins") %> </li>
-              <li> <%= link_to("Logout", :action => "logout") %> </li>
-            </ul>
+          <%if session[:admin]%>
+            <div class="menu">
+              <h2>Admin Menu</h2>
+
+              <div class =" identity">Logged in as: <%= session[:username]%> </div>
+              <ul>
+                <li> <%= link_to("Manage Questions", :controller => "questions") %> </li>
+                <li> <%= link_to("Manage Assignments", :controller => "assignments") %> </li>
+                <li> <%= link_to("Manage Users", :controller => "users") %> </li>
+                <li> <%= link_to("Manage Admin Users", :controller => "admins") %> </li>
+
+              </ul>
+            </div>
+          <%end%>
+          <div class ="logout">
+            <%= link_to("Logout", :controller => 'access' ,:action => "logout") %>
           </div>
           <%= yield %>
         </div>

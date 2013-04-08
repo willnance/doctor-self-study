@@ -1,4 +1,7 @@
+<head>
+    <%= javascript_include_tag "application" %>
 
+</head>
 <table summary="question form fields">
       <tr>
         <th>Question Subject</th>
@@ -10,19 +13,23 @@
       </tr>
       <tr>
         <th>Choice A</th>
-        <td><%= f.text_field(:answerA) %></td>
+        <td><%= f.text_field(:answerA) %>  </td>
+        <td><%= f.radio_button(:solution, "test(A);")%></td>
       </tr>
       <tr>
         <th>Choice B</th>
         <td><%= f.text_field(:answerB) %></td>
+        <td><%= f.radio_button(:solution, "test(B);")%></td>
       </tr>
       <tr>
         <th>Choice C</th>
         <td><%= f.text_field(:answerC) %></td>
+        <td><%= f.radio_button(:solution, "test(C);")%></td>
       </tr>
       <tr>
         <th>Choice D</th>
         <td><%= f.text_field(:answerD) %></td>
+        <td><%= f.radio_button(:solution, "test();")%></td>
       </tr>
       <tr>
         <th>Correct Answer</th>
@@ -42,3 +49,15 @@
       </tr>
       
     </table>
+
+<input id="clickMe" type="button" onclick="test();" />
+
+<script type="text/javascript">
+  function test(){
+     var tempp = $('input[name="solution"]:checked').val();
+     alert(tempp);
+     var tmp = new String(tempp);
+     var selection = $(tmp).val();
+     alert(selection);
+     return true;
+</script>

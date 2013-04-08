@@ -7,14 +7,21 @@ gem 'rails', '3.2.12'
 
 group :development, :test do
 	gem 'mysql2'
+  gem 'ghazel-SystemTimer'
 end
 group :production do
 	gem 'pg'
 	gem 'thin'
+  
 end
-	
+gem 'redis'
+gem 'resque'
+gem 'resque-scheduler', :require => 'resque_scheduler'	
 gem "heroku"
+#needed for autoscaling
+gem 'heroku-api'
 
+gem 'win32-process'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

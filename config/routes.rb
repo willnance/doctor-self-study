@@ -23,6 +23,8 @@ DoctorSelfStudy::Application.routes.draw do
       get :delete
     end
   end
+  require 'resque_scheduler'
+  mount Resque::Server, :at => 'admin/resque'
   
   
   resources :admins do

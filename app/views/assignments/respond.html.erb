@@ -1,0 +1,26 @@
+<div class="admin-display">
+  <%if @admin%>
+    <p>
+      You may edit the user's response below or change the question to override whether the question is marked correct.
+    </p>
+  <%end%>
+</div>
+<div class="question body">
+  <%= @question.question %>
+</div>
+<div class="answer-choices">
+  
+  <ol type="A">
+     <%= form_tag({:controller => "assignments", :action => 'grade',:id => params[:id],:user_id => params[:user_id]}) do %>
+      <%[@question.answerA, @question.answerB ,@question.answerC ,@question.answerD].each do |choice|%>
+        <li>
+          <%=  radio_button_tag(:response, choice)%>
+          <%= choice %>
+        </li>
+      <%end%>    
+    </ol>
+    <div class="form-buttons">
+      <%= submit_tag("Submit Response") %>
+    </div>
+  <%end%>
+</div>
