@@ -1,18 +1,26 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<%= link_to("<< Back to List", admins_path, :class => 'back-link') %>
-
-<div class="Admin new">
+<div class="General-container">
+  <div class="hero-unit">
   <h2>Create new Administrator</h2>
 
   <%= form_for(:Admin, :url => admins_path , :html => {:method => :post}) do |f| %>
 
     <%= render( :partial => "form", :locals => {:f => f}) %>
 
-    <div class="form-buttons">
-      <%= submit_tag("Add New Administrator") %>
-    </div>
+    
+  <%= submit_tag("Add New Administrator", :class => 'btn btn-primary btn-large') %>
+  <br/><br/>
+  <%= link_to("Back to List", admins_path, :class => 'btn btn-primary btn-large') %>
+
 
   <% end %>
+  </div>
 </div>
 
 

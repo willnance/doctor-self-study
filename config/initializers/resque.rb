@@ -1,4 +1,8 @@
+#authors Will Nance and Sanket Prabhu , with lots of help from the internet
 require 'resque_scheduler'
+#redistogo.com
+#username / email wllnance@gmail.com CHANGEME
+#password doctorselfstudy
 ENV["REDISTOGO_URL"] ||= "redis://redistogo:f95d214230c8ec72a902bbd2b519dbe3@spinyfin.redistogo.com:9192/"
 
 uri = URI.parse(ENV["REDISTOGO_URL"])

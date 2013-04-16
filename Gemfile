@@ -1,3 +1,5 @@
+#authors Will Nance and Sanket Prabhu, but nothing original in here
+
 source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.12'
@@ -8,20 +10,23 @@ gem 'rails', '3.2.12'
 group :development, :test do
 	gem 'mysql2'
   gem 'ghazel-SystemTimer'
+  gem 'win32-process'
 end
 group :production do
 	gem 'pg'
 	gem 'thin'
   
 end
+gem "rails-settings", :git => "git://github.com/100hz/rails-settings.git"
+gem 'sinatra', '1.3.6'
 gem 'redis'
 gem 'resque'
 gem 'resque-scheduler', :require => 'resque_scheduler'	
 gem "heroku"
-#needed for autoscaling
+#needed for autoscaling . . . i think . . . dare you to remove it
 gem 'heroku-api'
 
-gem 'win32-process'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

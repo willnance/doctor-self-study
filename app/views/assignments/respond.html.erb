@@ -1,3 +1,12 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%#make sure they get to this page and then mark the assignment as answered%>
+  <%@assignment.responded = true%>
+</head>
+
 <div class="admin-display">
   <%if @admin%>
     <p>
@@ -5,22 +14,43 @@
     </p>
   <%end%>
 </div>
-<div class="question body">
-  <%= @question.question %>
-</div>
-<div class="answer-choices">
-  
-  <ol type="A">
-     <%= form_tag({:controller => "assignments", :action => 'grade',:id => params[:id],:user_id => params[:user_id]}) do %>
-      <%[@question.answerA, @question.answerB ,@question.answerC ,@question.answerD].each do |choice|%>
-        <li>
-          <%=  radio_button_tag(:response, choice)%>
-          <%= choice %>
-        </li>
-      <%end%>    
-    </ol>
-    <div class="form-buttons">
-      <%= submit_tag("Submit Response") %>
+
+<div class="General-container">
+  <div class="hero-unit">
+    <div class="question body">
+      <%= @question.question %>
     </div>
-  <%end%>
+
+
+    <ol type="A">
+      <%= form_tag({:controller => "assignments", :action => 'grade',:id => params[:id],:user_id => params[:user_id]}) do %>
+        <%[@question.answerA, @question.answerB ,@question.answerC ,@question.answerD].each do |choice|%>
+          <li>
+            <%=  radio_button_tag(:response, choice)%>
+            <%= choice %>
+          </li>
+        <%end%>    
+      </ol>
+      <div class="form-buttons">
+        <%= submit_tag("Submit Response", :class => 'btn btn-primary btn-large') %>
+      </div>
+    <%end%>
+    <br/>
+    <div id="timer">
+      <script>
+        var time = 180  ;
+        var myInterval = window.setInterval("testTimer()", 1000);
+        function testTimer(){
+          time = time - 1;
+          document.getElementById("timer").innerHTML = "Seconds Left " + time;
+          if(time == 0){
+             <% @assignment.blank = true %>
+      alert('done');
+      clearInterval(myInterval);
+      window.location = <%="assignments/grade/#{@assignment.id}?#{params[:user_id]}"%>;
+    }
+  }
+      </script>
+    </div>
+  </div>
 </div>

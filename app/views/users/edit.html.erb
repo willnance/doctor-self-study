@@ -1,14 +1,22 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<%= link_to("<< Back to List", users_path, :class => 'back-link') %>
+<div class="General-container">
+  <div class="hero-unit">
+    <h2>Update User</h2>
+    <%= link_to("Back to List", users_path, :class => 'btn btn-primary btn-large') %>
+    <br><br>
 
-<div class="User edit">
-  <h2>Update User</h2>
+    <%= form_for(:User, :url => user_path(@User.id) , :html => {:method=> :put}) do |f| %>
+      <%=  render(:partial => "form" , :locals => {:f => f})  %>
 
-  <%= form_for(:User, :url => user_path(@User.id) , :html => {:method=> :put}) do |f| %>
-    <%=  render(:partial => "form" , :locals => {:f => f})  %>
-    
-    <div class="form-buttons">
-      <%= submit_tag("Update User") %>
-    </div>
-  <% end %>
+      <div class="form-buttons">
+        <%= submit_tag("Update User") %>
+      </div>
+    <% end %>
+  </div>
 </div>

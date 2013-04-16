@@ -1,8 +1,22 @@
+#authors Will Nance and Sanket Prabhu
 class QuestionsController < ApplicationController
   
   before_filter :confirm_admin
   layout "admin"
   respond_to :json
+  
+  #This is a basic controller. nothing fancy here
+  #There is functionality for the CRUD actions here
+  # with the typical 8 Rails methods
+  # list (index) & show, new & create , edit & update , and delete & destroy
+  # Look at basic rails documentation to understand this. 
+  # 
+  # Also note there is some JSON functionality built into this.
+  # Again this is a legacy feature from when we were going to support
+  # an iOS REST API. If you need it its there and easy to configure.
+  
+  
+  
   
   def index
     @questions = Question.order("id ASC")    

@@ -1,6 +1,21 @@
+#authors Will Nance and Sanket Prabhu
 class UsersController < ApplicationController
   before_filter :confirm_admin , :except => [:show]
   layout "admin"
+  
+  
+  
+  #This is a basic controller. nothing fancy here
+  #There is functionality for the CRUD actions here
+  # with the typical 8 Rails methods
+  # list (index) & show, new & create , edit & update , and delete & destroy
+  # Look at basic rails documentation to understand this. 
+  # 
+  # Also note there is some JSON functionality built into this.
+  # Again this is a legacy feature from when we were going to support
+  # an iOS REST API. If you need it its there and easy to configure.
+  
+  
   def index
     @Users = User.order("Users.year ASC")
     respond_to do |format| 

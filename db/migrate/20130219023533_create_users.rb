@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|

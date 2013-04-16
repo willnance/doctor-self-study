@@ -1,9 +1,14 @@
+
+#authors Will Nance and Sanket Prabhu
 class AssignmentsController < ApplicationController
-  before_filter :store_location
+  before_filter :store_location, :only => [:respond]
   #before_filter  :confirm_admin , :except => [:show, :edit]
   before_filter :confirm_logged_in ,:only =>[:respond]
   
   layout 'admin'
+  
+  #list all assignments for a particular user. 
+  #if no user is selected, then list all without duplicates
   def index
     @assignments = Assignment.order("id asc")
     unless params[:user_id] == nil
@@ -20,13 +25,7 @@ class AssignmentsController < ApplicationController
       format.json {render(:json => @questions)}
     end
   end
-  #  def confirm_logged_in
-  #    unless session[:user_id]
-  #      return false
-  #    else 
-  #      return true  
-  #    end
-  #  end
+  
   
   #display a pre-answer page that gives instructions to the user and a link to the answer page
   #user must be logged in, but not necessarily an admin
@@ -39,12 +38,17 @@ class AssignmentsController < ApplicationController
     
   end
   
+  #this doesnt really get called but it kind of makes sense to edit the question 
+  #associated with this assignment so i put the functionality here anyway
   def edit
     @assignment = Assignment.find_by_id(params[:id])
     @user =     @assignment.user
     @question = @assignment.question
     puts "user #{@user} question #{@question} assignment #{@assignment}"
   end
+  
+  #Take the users response and save it to the assignment 
+  #Hope that it doesnt fail . . .
   def grade
     @assignment = Assignment.find(params[:id])
     @user = @assignment.user
@@ -59,6 +63,15 @@ class AssignmentsController < ApplicationController
       render(user_assignment_path(@user, @assignment) , :html => {:method => :get})
     end
   end
+  
+  #This was leftover from when we were using REST methods in our app. When 
+  #the iOS  developer quit, we didnt need it anymore. I think is should still
+  #work (its the same as grade) but you dont want to call it unless you switch
+  #back to using a REST API with an iPhone. In that case, this would get called 
+  #automatically for an HTTP put request.I think you can probably dig around
+  #and find a way to map that rest path to the grade action but you're on your 
+  #own for that
+  #
   def update
     puts "params " + params[:id]
     @assignment = Assignment.find(params[:id])
@@ -74,12 +87,24 @@ class AssignmentsController < ApplicationController
       render(user_assignment_path(@user, @assignment) , :html => {:method => :get})
     end
   end
+  
+  
+  #set up the state for the feedback page. the feedback page is hideous right now. 
+  #you should edit feedback.html.erb to make it prettier. Currently it just responds with 
+  #whether or not the user answered correctly or not.
+  ##
   def feedback
     @assignment = Assignment.find_by_id(params[:id])
     @user = @assignment.user
   end
+  
+  
+  #set up the state for  the respond page
+  #This takes you to the page where the user
+  #can submit a response to the multiple choice question
+  #
   def respond
-     @assignment = Assignment.find_by_id(params[:id])
+    @assignment = Assignment.find_by_id(params[:id])
     @user =     @assignment.user
     @question = @assignment.question
     puts "user #{@user} question #{@question} assignment #{@assignment}"

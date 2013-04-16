@@ -1,3 +1,4 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
 <div class="admin-display">
   <%if @admin%>
     <p>
@@ -11,7 +12,7 @@
 <div class="answer-choices">
   <%=  params[:user_id] + " " + params[:id]  %>
   <ol type="A">
-    
+
     <%=form_for(@assignment , :url => user_assignment_path(params[:user_id] , params[:id]) , :html => {:method => "put"},  :user_id => params[:user_id]) do |f|%>
       <%[@question.answerA, @question.answerB ,@question.answerC ,@question.answerD].each do |choice|%>
         <li>

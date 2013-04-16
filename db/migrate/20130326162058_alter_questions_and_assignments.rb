@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class AlterQuestionsAndAssignments < ActiveRecord::Migration
   def up
     add_column("questions" , "schedule", :datetime)

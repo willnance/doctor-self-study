@@ -1,3 +1,12 @@
-<p> This is the feedback page which is empty at the moment</p>
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<p> The question response was <%= @assignment.correct %> </p>
+<div class="General-container">
+  <div class="hero-unit">
+    <p> The question response was <%= @assignment.correct %> </p>
+  </div>
+</div>

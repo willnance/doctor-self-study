@@ -1,3 +1,4 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
 <%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
 <% if !flash[:notice].blank? %>
   <div class="notice">
@@ -31,7 +32,7 @@
     </tr>
     <tr>
       <th>Last Updated</th>
-      <td><%= @Admin.updated_at.strftime("%b. %d %Y %H:%M" )) %></td>
+      <td><%= @Admin.updated_at.strftime("%b. %d %Y %H:%M" ) %></td>
     </tr>
   </table>
   

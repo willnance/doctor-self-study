@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class CreateAdmins < ActiveRecord::Migration
   def change
     create_table :admins do |t|

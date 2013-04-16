@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu, with help from the internet
 require 'resque/tasks'
 require 'resque_scheduler/tasks'
 task "resque:setup" => :environment do

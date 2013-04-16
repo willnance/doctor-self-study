@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class AlterUsersAndQuestions < ActiveRecord::Migration
   def up
     add_column("users", "rotation", :int)

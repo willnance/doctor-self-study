@@ -1,43 +1,44 @@
-<div class ="assignment list"> 
-  <h2>Questions</h2>
-  
-  <br/>  
-  <%if @user%>
-    <div class ='back link'>
-      <%= link_to("Back to users", users_path, :html => {:method => :get}, :class=> 'action news') %>
-    </div>
-    <div class ='user name'> 
-      Displaying assignments for <%=@user.firstName + " " + @user.lastName %> 
-    </div>
-  <%else%>
-    <div class ='back link'>
-      <%=link_to( "Back to Main menu" , :controller => "access" , :action => :menu)%>
-    </div>
-    <%= link_to("add new question", {:controller => "questions" , :action => "new"}, :class=> 'action new') %>
-  <%end%>
-  <div class =" identity">Logged in as: <%= session[:username]%> </div>
-  <table class="listing" summary="question list">
-    <tr class= "header">
-      <th>&nbsp;</th>
-      <th>ID</th>
-      <th>subject</th>
-      <th>Assigned on</th>
-      <th>Actions</th>
-    </tr>
-    <% @assignments.each do |assignment| %>
-    <tr>
-      <td>&nbsp;</td>
-      <td><%=assignment.question.id %></td>
-      <td><%=assignment.question.subject %></td>
-      <td><%=assignment.question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
-      <td class= "actions">
-        <%=  link_to("Show", question_path(assignment.question.id) , :html  => {:method => :get}, :class => 'action show') %>
-        <%=  link_to("Edit", edit_question_path(assignment.question.id) , :html => {:method => :get}, :class=>'action edit') %>
-        <%=  link_to("Delete", delete_question_path(assignment.question.id), :html => {:method => :get}, :class=>'action delete') %>
-        <%=  link_to("Edit Response", :controller => "assignments" , :action=> 'respond', :id => assignment.id, :user_id => params[:id], :class=>'action edit-response') %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<div class ="General-container"> 
+  <div class="hero-unit">
+    <h2>Questions</h2>
+    <%=link_to( "Back to Main menu" , {:controller => "access" , :action => :menu}, :class => "btn btn-primary btn-large")%>
+    <%= link_to("add new question", {:controller => "questions" , :action => "new"}, :class=> 'btn btn-primary btn-large') %>
+    <br/>  
+    <%if @user%>
+      <div class ='user name'> 
+        Displaying assignments for <%=@user.firstName + " " + @user.lastName %> 
+      </div>
+    <%end%>
+    <div class =" identity">Logged in as: <%= session[:username]%> </div>
+    <table class="listing" summary="question list">
+      <tr class= "header">
+        <th>&nbsp;</th>
+        <th>ID</th>
+        <th>subject</th>
+        <th>Assigned on</th>
+        <th>Actions</th>
+      </tr>
+      <% @assignments.each do |assignment| %>
+        <tr>
+          <td>&nbsp;</td>
+          <td><%=assignment.question.id %></td>
+          <td><%=assignment.question.subject %></td>
+          <td><%=assignment.question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
+          <td class= "actions">
+            <%=  link_to("Show", question_path(assignment.question.id) , :html  => {:method => :get}, :class => 'action show') %>
+            <%=  link_to("Edit", edit_question_path(assignment.question.id) , :html => {:method => :get}, :class=>'action edit') %>
+            <%=  link_to("Delete", delete_question_path(assignment.question.id), :html => {:method => :get}, :class=>'action delete') %>
+            <%=  link_to("Edit Response", :controller => "assignments" , :action=> 'respond', :id => assignment.id, :user_id => params[:id], :class=>'action edit-response') %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
-     

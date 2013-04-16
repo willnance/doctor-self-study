@@ -1,61 +1,73 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <style>
+    .show-question-table{
+      text-align: left;
+    }
+  </style>
+</head>
 
 
 
-<%= link_to("<< Back to List", questions_path, :class => 'back-link') %>
+<div class="General-container">
+  <div class="hero-unit">
+    <h2>Show question</h2>
+    <%= link_to("<< Back to List", questions_path, :class => 'btn btn-primary btn-large') %>
+    <br/><br/>
+    <table summary="question detail view" class ="show-question-table">
+      <tr>
+        <th>question Subject</th>
+        <td><%= @question.subject%></td>
+      </tr>
+      <tr>
+        <th>question</th>
+        <td><%= @question.question %></td>
+      </tr>
+      <tr>
+        <th>Answer Choice A</th>
+        <td><%= @question.answerA %></td>
+      </tr>
+      <tr>
+        <th>Answer Choice B</th>
+        <td><%= @question.answerB %></td>
+      </tr>
+      <tr>
+        <th>Answer Choice C</th>
+        <td><%= @question.answerC %></td>
+      </tr>
+      <tr>
+        <th>Answer Choice D</th>
+        <td><%= @question.answerD %></td>
+      </tr>
+      <tr>
+        <th>Solution</th>
+        <td><%= @question.solution %></td>
+      </tr>
+      <tr>
+        <th>Created</th>
+        <td><%= @question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
+      </tr>
+      <tr>
+        <th>Assigned to Rotation:</th>
+        <td><%= @question.rotation %></td>
+      </tr>
+      <tr>
+        <th>Assigned to Year:</th>
+        <td><%= @question.year %></td>
+      </tr>
+      <tr>
+        <th>Updated</th>
+        <td><%= @question.updated_at.strftime("%d %b. %Y %H:%M" ) %></td>
+      </tr>
+      <tr>
+        <th>Push at: </th>
+        <td><%= @question.schedule.strftime("%d %b. %Y %H:%M" ) %></td>
+      </tr>
 
-<div class="question show">
-  <h2>Show question</h2>
-
-  <table summary="question detail view">
-    <tr>
-      <th>question Subject</th>
-      <td><%= @question.subject%></td>
-    </tr>
-    <tr>
-      <th>question</th>
-      <td><%= @question.question %></td>
-    </tr>
-    <tr>
-      <th>Answer Choice A</th>
-      <td><%= @question.answerA %></td>
-    </tr>
-    <tr>
-      <th>Answer Choice B</th>
-      <td><%= @question.answerB %></td>
-    </tr>
-    <tr>
-      <th>Answer Choice C</th>
-      <td><%= @question.answerC %></td>
-    </tr>
-    <tr>
-      <th>Answer Choice D</th>
-      <td><%= @question.answerD %></td>
-    </tr>
-    <tr>
-      <th>Solution</th>
-      <td><%= @question.solution %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @question.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
-    </tr>
-    <tr>
-      <th>Assigned to Rotation:</th>
-      <td><%= @question.rotation %></td>
-    </tr>
-    <tr>
-      <th>Assigned to Year:</th>
-      <td><%= @question.year %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @question.updated_at.strftime("%d %b. %Y %H:%M" ) %></td>
-    </tr>
-    <tr>
-      <th>Push at: </th>
-      <td><%= @question.schedule.strftime("%d %b. %Y %H:%M" ) %></td>
-    </tr>
-    
-  </table>
-  
+    </table>
+  </div>
 </div>

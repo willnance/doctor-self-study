@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class CreateAssignments < ActiveRecord::Migration
   def change
     create_table :assignments do |t|

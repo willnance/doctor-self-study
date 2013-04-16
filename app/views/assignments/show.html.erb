@@ -1,14 +1,25 @@
-<div class ="admin show">
-  <%if @admin%>
-    <%= render( :template => "questions/show") %>
-  <%end%>
-</div>
-<div class ="user show">
-  <h1>Answer Question</h1>
-  <div class ="rules">
-    <p>
-      You are about to respond to this question. Once you view this question, you will have three minutes to respond. You have one attempt.
-    </p>
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<div class="General-container">
+  <div class="hero-unit">
+    <div class ="admin show">
+      <%if @admin%>
+        <%= render( :template => "questions/show") %>
+      <%end%>
+    </div>
+    <div class ="user show">
+      <h1>Answer Question</h1>
+      <div class ="rules">
+        <p>
+          You are about to respond to this question. Once you view this question, you will have three minutes to respond. You have one attempt.
+        </p>
+      </div>
+      <%=link_to("Begin assignment" , {:action => 'edit', :user => @user} , :class => "begin link")%>
+    </div>
   </div>
-  <%=link_to("Begin assignment" , {:action => 'edit', :user => @user} , :class => "begin link")%>
 </div>

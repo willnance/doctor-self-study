@@ -1,14 +1,24 @@
-<%#{:action => 'list'} %>
-<%= link_to("<< Back to List", questions_path , :class => 'back-link') %>
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<div class="Question edit">
-  <h2>Update Question</h2>
+<%#{:action => 'list'} %>
+
+<div class="General-container">
+  <div class ="hero-unit">
+    <h2>Update Question</h2>
+    <%= link_to("<< Back to List", questions_path , :class => 'btn btn-primary btn-large') %>
+    <br/><br/>
 <%#{:action => 'update', :id => @question.id}%>
-  <%= form_for(:question, :url => question_path(@question.id), :html => {:method=> :put} ) do |f| %> 
-   <%= render( :partial => "form", :locals => {:f => f}) %>
-    
-    <div class="form-buttons">
-      <%= submit_tag("Update question") %>
-    </div>
-  <% end %>
+    <%= form_for(:question, :url => question_path(@question.id), :html => {:method=> :put} ) do |f| %> 
+      <%= render( :partial => "form", :locals => {:f => f}) %>
+
+      <div class="form-buttons">
+        <%= submit_tag("Update question") %>
+      </div>
+    <% end %>
+  </div>
 </div>

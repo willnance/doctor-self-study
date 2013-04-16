@@ -1,3 +1,4 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
   "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -7,10 +8,13 @@
     <meta name="author" content="Will Nance">
     <%= stylesheet_link_tag('access', :media => 'all') %>    
   </head>
-  <body>
-    <div id ="contentwrapper">
-      <div id="header">
-        <h1>Doctor Self Study</h1>
+    <body>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class ="top-container">
+            <a class="brand" href="www.duke.edu"><b>Duke University Medicine </b></a>
+          </div>
+        </div>
       </div>
 
       <div id="main">
@@ -19,30 +23,24 @@
             <%= flash[:notice] %>
           </div>
         <% end %>
-        <div id="content">
-          <%if session[:admin]%>
-            <div class="menu">
-              <h2>Admin Menu</h2>
-
-              <div class =" identity">Logged in as: <%= session[:username]%> </div>
-              <ul>
+        <div class ="row-fluid">
+          <div class ="mysidebar">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header">Admin Menu</li>
                 <li> <%= link_to("Manage Questions", :controller => "questions") %> </li>
-                <li> <%= link_to("Manage Assignments", :controller => "assignments") %> </li>
                 <li> <%= link_to("Manage Users", :controller => "users") %> </li>
                 <li> <%= link_to("Manage Admin Users", :controller => "admins") %> </li>
-
+                <li> <%= link_to("Logout", :controller => 'access' ,:action => "logout") %> </li>
               </ul>
             </div>
-          <%end%>
-          <div class ="logout">
-            <%= link_to("Logout", :controller => 'access' ,:action => "logout") %>
           </div>
+          
           <%= yield %>
         </div>
       </div>
       <div id="footer">
         <p id="copyright">&copy; Duke CS</p>
       </div>
-    </div>
   </body>
 </html>

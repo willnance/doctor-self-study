@@ -1,38 +1,42 @@
 
-body{
-    font-family: Arial;
-    background-color:  #C0C0C0
-}
-
-#header{
-    color:  #001A57;
-    text-align: center
-}
-
-#main{
-     display: inline-block;
-     width: 50%;
-     padding-left: 50px;
-}
-
-#footer{
-    text-align:  center;
-    color:  #001A57
-}
-
-#contentwrapper{
-    color:  #001A57;
-    background-color: white;
-    width: 95%;
-    height: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    -webkit-box-shadow: 10px 10px 0px 0px #888;
-}
-
 #notice{
     padding-right: 100px
 }
-#mainwrapper{
 
+.brand:hover{
+    text-decoration: none;
+}
+
+.navbar navbar-inverse navbar-fixed-top{
+    margin-bottom: 20px;
+}
+
+.row-fluid{
+    margin-top: 60px;
+    white-space: nowrap;
+}
+
+.mysidebar{
+    float:left;
+    width: 300px;
+}
+
+.menu{
+    float:left;
+}
+
+Admin-container{
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.General-container{
+    display: inline-block;
+    margin-left: 30px;
+}
+
+
+.listing{
+    text-align: center;
+    width: 1000px
 }

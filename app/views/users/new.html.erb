@@ -1,18 +1,26 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<%= link_to("<< Back to List", users_path, :class => 'back-link') %>
 
-<div class="User new">
-  <h2>Create User</h2>
+<div class="General-container">
+  <div class="hero-unit">
+    <h2>Create User</h2>
+    <%= link_to("Back to List", users_path, :class => 'btn btn-primary btn-large') %>
+    <br><br>
+    <%= form_for(:User, :url => users_path , :html => {:method => :post}) do |f| %>
 
-  <%= form_for(:User, :url => users_path , :html => {:method => :post}) do |f| %>
+      <%=  render(:partial => "form" , :locals => {:f => f})  %>
 
-    <%=  render(:partial => "form" , :locals => {:f => f})  %>
+      <div class="form-buttons">
+        <%= submit_tag("Add New User", :class => 'btn btn-primary btn-large') %>
+      </div>
 
-    <div class="form-buttons">
-      <%= submit_tag("Add New User") %>
-    </div>
-
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 

@@ -1,18 +1,24 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
 
+<div class="General-container">
+  <div class="hero-unit">
+    <%= link_to("<< Back to List", questions_path, :class => 'btn btn-primary btn-large') %>
 
+    <h2>Create Question</h2>
 
-<%= link_to("<< Back to List", questions_path, :class => 'back-link') %>
+    <%= form_for(:question, :url => questions_path , :html => {:method => :post}) do |f| %>
 
-<div class="question new">
-  <h2>Create Question</h2>
+      <%= render( :partial => "form", :locals => {:f => f }) %>
+      <div class="form-buttons">
+        <%= submit_tag("Add New Question", :class => "btn btn-primary btn-large") %>
+      </div>
 
-  <%= form_for(:question, :url => questions_path , :html => {:method => :post}) do |f| %>
-  
-    <%= render( :partial => "form", :locals => {:f => f }) %>
-    <div class="form-buttons">
-      <%= submit_tag("Add New Question") %>
-    </div>
-    
-  <% end %>
+    <% end %>
+  </div>
 </div>

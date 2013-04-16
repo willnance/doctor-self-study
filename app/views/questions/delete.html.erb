@@ -1,18 +1,25 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<%= link_to("<< Back to List", questions_path, :class => 'back-link') %>
+<div class="General-container">
+  <div class="hero-unit">
+    <h2>Delete question</h2>
+    <%= link_to("Back to List", questions_path, :class => 'btn btn-primary btn-large') %>
+    <br/><br/>
+    <%= form_for(:question, :url => question_path(@question.id),:html=> {:method => :delete} ) do |f| -%>
 
-<div class="question delete">
-  <h2>Delete question</h2>
-  
-  <%= form_for(:question, :url => question_path(@question.id),:html=> {:method => :delete} ) do |f| -%>
+      <p>Are you sure you want to permanently delete this question?</p>
 
-    <p>Are you sure you want to permanently delete this question?</p>
-  
-    <p class="reference-name"><%= @question.question %></p>
-  
-    <div class="form-buttons">
-      <%= submit_tag("Delete question") %>
-    </div>
-    
-  <% end %>
+      <p class="reference-name"><%= @question.question %></p>
+
+      <div class="form-buttons">
+        <%= submit_tag("Delete question", :class => 'btn btn-primary btn-large' ) %>
+      </div>
+
+    <% end %>
+  </div>
 </div>

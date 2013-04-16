@@ -1,7 +1,12 @@
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<%= link_to("<< Back to List", admins_path, :class => 'back-link') %>
-
-<div class="Admin delete">
+<div class="General-container">
+  <div class="hero-unit">
   <h2>Delete Admin</h2>
   
   <%= form_for(:admin, :url => admin_path(@Admin.id),:html=> {:method => :delete}) do |f| -%>
@@ -10,9 +15,12 @@
   
     <p class="reference-name"><%= @Admin.firstName %> <%= @Admin.lastName %> </p>
   
-    <div class="form-buttons">
-      <%= submit_tag("Delete Admin") %>
-    </div>
+
+    <%= submit_tag("Delete Admin", :class => 'btn btn-primary btn-large') %>
+    <br/><br/>
+    <%= link_to("Back to List", admins_path, :class => 'btn btn-primary btn-large') %>
+
     
   <% end %>
+  </div>
 </div>

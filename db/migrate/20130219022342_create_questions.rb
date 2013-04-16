@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|

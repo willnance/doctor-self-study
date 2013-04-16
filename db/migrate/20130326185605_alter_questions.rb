@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class AlterQuestions < ActiveRecord::Migration
   def up
     remove_column("questions" , "visible")

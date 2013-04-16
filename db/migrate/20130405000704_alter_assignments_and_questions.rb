@@ -1,3 +1,4 @@
+#authors Will Nance and Sanket Prabhu
 class AlterAssignmentsAndQuestions < ActiveRecord::Migration
   def up
     add_column("assignments", "responded" , :boolean)

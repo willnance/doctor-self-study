@@ -1,5 +1,4 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
+#authors Will Nance and Sanket Prabhu
 
 class MailInterceptor
   def self.delivering_email(message)

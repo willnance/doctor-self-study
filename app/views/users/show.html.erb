@@ -1,46 +1,54 @@
-<%= link_to("<< Back to List", users_path, :class => 'back-link') %>
+<!-- #authors Will Nance and Sanket Prabhu -->
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-<div class="user show">
-  <h2>Show user</h2>
+<div class="General-container">
+  <div class="hero-unit">
+    <h2>Show user</h2>
+    <%= link_to("Back to List", users_path, :class => 'btn btn-primary btn-large') %>
+    <br><br>
+    <table summary="user detail view">
+      <tr>
+        <th>User First Name</th>
+        <td><%= @User.firstName%></td>
+      </tr>
+      <tr>
+        <th>User Last Name</th>
+        <td><%= @User.lastName %></td>
+      </tr>
+      <tr>
+        <th>Username</th>
+        <td><%= @User.username %></td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td><%= @User.hashedPassword %></td>
+      </tr>
+      <tr>
+        <th>Year</th>
+        <td><%= @User.year %></td>
+      </tr>
+      <tr>
+        <th>Created</th>
+        <td><%= @User.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
+      </tr>
+      <tr>
+        <th>Last Updated</th>
+        <td><%= @User.updated_at.strftime("%d %b. %Y %H:%M" ) %></td>
+      </tr>
+      <tr>
+        <th>Rotation</th>
+        <td><%= @User.rotation %></td>
+      </tr>
+      <tr>
+        <th>Year</th>
+        <td><%= @User.year %></td>
+      </tr>
+    </table>
 
-  <table summary="user detail view">
-    <tr>
-      <th>User First Name</th>
-      <td><%= @User.firstName%></td>
-    </tr>
-    <tr>
-      <th>User Last Name</th>
-      <td><%= @User.lastName %></td>
-    </tr>
-    <tr>
-      <th>Username</th>
-      <td><%= @User.username %></td>
-    </tr>
-    <tr>
-      <th>Password</th>
-      <td><%= @User.hashedPassword %></td>
-    </tr>
-    <tr>
-      <th>Year</th>
-      <td><%= @User.year %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @User.created_at.strftime("%b. %d %Y %H:%M" ) %></td>
-    </tr>
-    <tr>
-      <th>Last Updated</th>
-      <td><%= @User.updated_at.strftime("%d %b. %Y %H:%M" ) %></td>
-    </tr>
-    <tr>
-      <th>Rotation</th>
-      <td><%= @User.rotation %></td>
-    </tr>
-    <tr>
-      <th>Year</th>
-      <td><%= @User.year %></td>
-    </tr>
-  </table>
-  
+  </div>
+
 </div>
-

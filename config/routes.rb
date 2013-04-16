@@ -1,5 +1,5 @@
 DoctorSelfStudy::Application.routes.draw do
-
+#authors Will Nance and Sanket Prabhu
   root :to => "access#index"
   
   #match 'admin' , :to => 'access#menu'
