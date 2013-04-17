@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     #compare to analogous method in question.rb. you want to keep the assignments
     # that have been answered for statistics purposes.
     self.assignments.each do |a|
-      a.destroy unless a.question.responded == true
+      a.destroy unless a.responded == true
     end
     make_assignments(filtered_questions())
     make_assignments(universal_questions())

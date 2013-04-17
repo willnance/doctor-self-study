@@ -27,7 +27,7 @@ class Assignment < ActiveRecord::Base
   #called after a user submits the response
   def grade
     #only grade if they've responded
-    if self.responded = true
+    if self.responded == true
       self.correct = (response == self.question.solution) 
     end
   end
@@ -36,7 +36,8 @@ class Assignment < ActiveRecord::Base
   #This throws the assignment into the delayed queue to be pushed out later.
   #as of now this is not working for some very strange back end bug that we cant figure out.
   def queue_assignments
-    Resque.enqueue_at(self.question.schedule , SchedulerJob , {:assignment_id => 155})
+    puts "queueing assignment"
+    Resque.enqueue_at(self.question.schedule , SchedulerJob , {:assignment_id => self.id})
   end
   
   ## you should remove these assignments if you are about to destroy them.
