@@ -1,13 +1,15 @@
 #authors Will Nance and Sanket Prabhu
+require "question_mailer"
+
 class AccessController < ApplicationController
-  before_filter :confirm_admin, :except => [:login, :attempt_login, :logout]
+  before_filter :confirm_admin, :except => [:login, :attempt_login, :logout , :reset_password , :change_password , :get_new_password , :attempt_password_recover]
   #cant be logged in on the login screen :-p
   layout "admin" , :except =>:login
   
   
   #default access action
   #you should just render 
-  #the menu view
+  #the menu view  
   def index
     menu
     render("menu")
@@ -20,6 +22,41 @@ class AccessController < ApplicationController
     
   end
 
+  #nothing to do, just render the default form , reset_password.html.erb
+  def reset_password
+  end
+  
+  
+  def change_password
+    flash[:notice] = "We were unable to change your password, please try again or contact your administrator"
+    newpassword = params[:password]
+    user = Admin.find_by_username(params[:username])
+    user = User.find_by_username(params[:username])unless user
+    if user
+      user.password = newpassword
+      flash[:notice] = "password successfully changed" if user.save
+    end
+    redirect_to(:action => 'login')
+  end
+  
+  
+  def get_new_password
+    
+  end
+  
+  
+  def attempt_password_recover
+    username = params[:username]
+    user = Admin.find_by_username(username)
+    user = User.find_by_username(username) unless user
+    if user
+      user.send_password_change_instructions 
+      flash[:notice] = "an email has been send to your email. please try again if you do not receive an email in the next ten minutes"
+    else
+      flash[:notice] = "we were unable to locate the user profile with that username. Please try again"
+    end
+    redirect_to(:controller =>'access' , :action => 'login')
+  end
   
   #take the input from the form ans see if you 
   #can find a user or admin with those credentials

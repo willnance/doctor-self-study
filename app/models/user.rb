@@ -1,6 +1,6 @@
 #authors Will Nance and Sanket Prabhu
 require 'digest/sha2'
-require "QuestionMailer"
+require "question_mailer"
 #ALL jobs and models must extend the Autoscaling module for cheap Heroku deployment
 require 'heroku_resque_auto_scale'
 class User < ActiveRecord::Base 
@@ -17,7 +17,14 @@ class User < ActiveRecord::Base
   
   
   def deliverWelcome
-   QuestionMailer.deliver_welcome(self)
+   mail = QuestionMailer.send_welcome(self)
+   mail.deliver
+   return mail
+  end
+  
+  
+  def send_password_change_instructions 
+    QuestionMailer.send_password_reset_instructions(self).deliver
   end
   
   

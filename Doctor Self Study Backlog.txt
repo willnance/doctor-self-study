@@ -1,0 +1,153 @@
+﻿Doctor Self Sudy Backlog:
+
+This is the current list of TODOs for the project.
+
+Minor issues:
+
+1) Timers on response page now (working-ish)
+
+In views/assignments/respond.html.erb there is a javascript function implementing a timer that counts 
+down from three minutes. At the end of the 3 minutes the page is supposed to redirect to the feedback 
+page submitting some information about the assignment. It’s supposed to set the blank field in the 
+current assignment to true and make sure that the responded field is also true.  Then it should 
+redirect to the feedback page and give the user feedback as normal.
+
+2) radio buttons
+
+This is a minor change and could probably be fixed in an hour or two by a knowledgeable web developer.
+ In Views/questions/_form.html.erb, there are radio buttons outside each of the answer choices. These 
+ radio buttons are supposed to indicate which answer is the correct answer, but this is not implemented
+ right now. Currently the working way to specify the correct answer is to copy the text of the right 
+ answer into the solution box so that the solution and the correct answer choice are the same. This is 
+ obviously not an ideal system but because the issue was minor we never got around to fixing it. 
+ 
+3) Make back button not work after answer submission and logout
+
+The user can currently go back to a respond page and resubmit his answer. This is an obvious security
+ flaw. There would be a simple hack that would check if a question already has a response and not accept 
+ new ones, but that is not an ideal solution. Furthermore there are other places in the app such as after
+ creating a new user / question / admin or after logout that should also have the back button disabled.
+ Therefore, we suggest the developer do some research into a solution. I believe that there is probably 
+ a ”rails way” to do this but I did not find one immediately while searching. I am not sure how to judge 
+ the time required to do this. It may be as easy as adjusting the cookies or session files, or it may 
+actually require adding a layer of security to every page that checks whether or not a user should be 
+able to view the page or not. Nonetheless, this feature would definitely make the app more secure and 
+professional feeling by not allowing the user to click the back button to re-view / submit a form.
+
+4) Make session expire after 30 minutes
+
+Users stay logged in unless they specifically hit the logout. I believe there is a way to specify 
+an expiration of the session file parameters that identify a user as logged in but We did not get 
+around to implementing it
+ 
+ Medium issues: 
+ 
+5) question push (not working ish)
+Using Resque scheduler, an open source gem for scheduling background jobs, we attempt to queue up each 
+assignment after it is created.  The enqueue_at function tells the scheduler to put a “job” in the 
+ready queue at the time specified by the “schedule” field for the assignment’s associated question. 
+At that time, the scheduler will remove the job from the queue and perform the action specified, in 
+this case, it will send an alert email to the resident saying that s/he has a new question to respond 
+to. In other words, every time an assignment is created, we tell the application to send out an email 
+at a prespecified time. This functionality is almost working, except that there is an error with the 
+way the scheduler works that causing the jobs to fail. See this Stack Overflow post for more information 
+on this error:
+http://stackoverflow.com/questions/15858776/mysql-error-using-resque-with-rails-table-does-not-exist
+Time estimate for this is difficult. We were unable to debug this problem, so it very well could be a 
+major issue requiring lots of time, but it also may be that the issue is just a simple bug in the 
+configuration of the scheduler, in which case it may not take log at all so solve.
+
+6) Changing passwords: (this is now mostly working) 
+This is perhaps more of a medium issue (3-4 hours). There is not currently a way to change a password 
+is a user forgets it. I believe this would be relatively trivial to do however. First, one would need 
+to create a simple password form for both users and admins. Whenever a password field is submitted to 
+an admin, the admin will automatically update and recreate the hashed passwords in the database. This
+part is relatively easy. The second part requires actually creating the series of pages to lead a user
+to this password form. A “forgot your password?” link should be added to the login screen, which 
+redirects to a page where a user can enter a username. Then the application can search for the user
+and use the application’s mailer to send an email to that users with a link to the password change form. 
+
+7) CSV upload to questions:
+This is another medium issue (5-6 hours). There needs to be a way to upload a CSV spreadsheet of question
+parameters to facilitate uploading multiple questions at once.  This would require the developer to
+ famiarize himself with a Ruby API for reading in CSV files and parsing them to questions. This would 
+ be relatively trivial given the developer could provide a custom template and provide an option to 
+ download the template and fill it in. The only problem would be learning how to read in the spreadsheet
+ line by line and use those values to create a question object.
+ 
+
+
+Larger items in the backlog:
+
+8) Settings page
+There needs to be a global settings page for the user to adjust application constants such as 
+the number of resident rotations and the number of years grades) of residents, the name of the 
+application, the number of answer choices per question etc. We have added to the gem file a gem 
+called rails-settings, which is an opensource gem that uses ActiveRecord (and thus the database) 
+to store such information. The documentation is very clear on github and we believe this is the 
+best option for configuring global settings. Using this does require adding a settings controller 
+and form to update these settings. I saw implementations in the wild for doing things like this 
+which used a reflective algorithm to dynamically update the settings. I believe this would be a 
+7-9 hour project to get fully implemented.
+
+
+9) Statistics:
+
+This is the largest requirement that we were unable to write. Originally we had planned 
+on displaying the statistics to the users on the iOS app, but when our iOS developer left the 
+project, this became our responsibility and we were unable to even begin to write this. The 
+statistics should keep track of the following items according to the doctors: 
+
+1 Streaks – Number of answered in a row, number answered correct / incorrect / blank in a row
+2 Total number of questions answered correctly
+3 Percentage of total questions answered, answered correctly, in correctly, blank
+
+These statistics should be viewable by both doctors on a per user basis and by the user , both 
+after the user answers a question and whenever a user wants to log in and view his / her 
+progress. This was originally supposed to be a statistics page in the iOS application.
+
+Furthermore, the application should be able to output the entire set of statistics in a 
+CSV format so the Doctors can do analytics on the results of the study. Due to the nature of 
+the statistics, with some being aggregate statistics, while the other being a time series,
+I dont see any way of getting around exporting more than one spreadsheet of statistics. 
+one should just be Users on one axis and questions on another, listing the result of the 
+questions in chronological order. Furthermore, This data will probably have to be exported
+on a group by group basis, since not all year and rotations will be asked the same questions
+I believe it will be necessary to work closely with the doctors on this to customize the statistics
+functionality appropriately, as the specifications for these were always somewhat vague.
+I believe the scale of this part of the project is on the order of 30 - 40 hours of coding,
+as it will require the creation of data structures to keep track of the statistics, some sort
+of database object to maintain the data, algorithms to analyze the raw data from the database,
+the functionality to properly display the data to both the User and the doctors, and the 
+ability to export this information in a useful way to a spreadsheet. All in all this is the biggest
+task left to complete.
+	
+9) Make useable for more than one group
+
+This is an additional feature that the doctors requested, but is by no means necessary for the 
+functionality of the application. They want this site to be generalizeable to other groups so that 
+other similar studies can be conducted simutaneously. Obviously this is a large task, requiring 
+30 - 40 or more to complete. Instead of having just one set of settings there wold need to be multiple 
+settings, pertaning to each study being conducted, Admins, users questions and assignments would 
+need to be associated with some overall Ruby / Rails object, called Application, or something similar,
+and all controllers would need to be refined to only pull the records from the databases that pertain 
+to that application, in addition to the logic that exists now. This would be a major strucutal overhaul
+and would doubtless introduce all sorts of bugs that can't be predicted and thus our time estimates 
+could be way off.
+
+
+
+Additional TODOs from User Testing . . .
+-	Check that all forms are filled in before sending
+-	Hide password as typing it in (create user)
+-	Fill in empty space
+-	fix sizing for mobile?
+-	On ‘create questions’, time to push is awkwardly big, twitter datatime picker would be nice
+-	Bigger main menu
+-	Looks plain
+-	“<<” on some back buttons but not all
+
+
+
+
+

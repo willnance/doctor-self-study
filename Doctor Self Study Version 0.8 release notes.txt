@@ -1,0 +1,19 @@
+Doctor Self Study Version 0.8 Release notes
+
+This release of the application allows for the creation of use and admin accounts and questions and provides automatic 
+association of questions to users. It is still unable to actually push the questions out at a pre-specified time due 
+to a bug in the scheduling service. This application is written in Ruby on Rails, running on Windows with the following
+versions:
+
+Ruby 1.9.3p385 
+Rails 3.2.12
+MySQL 5.6 in Development mode
+Heroku PostgreSQL in Production mode
+Heroku Cedar stack 
+Chrome Web Browser
+iOS Safari browser.
+Webrick server in Development mode
+Thin server in Production mode
+Netbeans 7.1 IDE with Community open source Ruby on Rails Plugins
+
+

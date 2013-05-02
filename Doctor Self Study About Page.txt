@@ -1,0 +1,22 @@
+Doctor Self Study About Page
+
+An App provided for:
+ Dr. Jason Yeh and Dr. Taylor Turner
+
+Developers
+Will Nance & Sanket Prabhu
+
+Sponsors:
+	Duke University Computer Science Department
+	<description of the grant which provided funding>
+
+Description
+This app is part of a study on spaced learning to measure whether residents with spaced exposure to exam 
+materials over time perform better than residents who aren’t using the app (and presumably cram for exams).
+ It gives the ability for doctors to enter multiple choice questions and specify a time for the questions 
+to go out to the residents. The residents are given 3 minutes to respond to the question after they’ve
+ viewed it and 24 hours after they are first notified of having the question, after which time the question
+ is no longer available to them. This app is supposed to provide a means of downloading the statistics on
+ residents’ performance to a spreadsheet for analytics. Notifications are sent out via email, although 
+there are plans to make that feature integrated into an iOS application using Push notifications to alert
+ users they have a question.

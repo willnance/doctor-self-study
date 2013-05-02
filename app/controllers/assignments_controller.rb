@@ -53,6 +53,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     @user = @assignment.user
     @assignment.update_attributes(:response => params[:response])
+    @assignment.save
     @assignment.grade
     if @assignment.save
       flash[:notice] = "Your response has been saved"

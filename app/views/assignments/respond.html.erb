@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <%#make sure they get to this page and then mark the assignment as answered%>
+<%#make sure they get to this page and then mark the assignment as answered%>
   <%@assignment.responded = true%>
 </head>
 
@@ -37,19 +37,22 @@
     <%end%>
     <br/>
     <div id="timer">
+      <%= "printing #{@user.id}" %>
       <script>
-        var time = 180  ;
+
+        var time = 180;
         var myInterval = window.setInterval("testTimer()", 1000);
         function testTimer(){
+                            document.getElementById("timer").innerHTML = "Seconds Left " + time;
+
           time = time - 1;
-          document.getElementById("timer").innerHTML = "Seconds Left " + time;
           if(time == 0){
-             <% @assignment.blank = true %>
-      alert('done');
-      clearInterval(myInterval);
-      window.location = <%="assignments/grade/#{@assignment.id}?#{params[:user_id]}"%>;
-    }
-  }
+            
+            
+            clearInterval(myInterval);
+             window.location = "<%="/assignments/grade/#{@assignment.id}"%>";
+          }
+        }
       </script>
     </div>
   </div>

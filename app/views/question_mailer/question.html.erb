@@ -1,0 +1,16 @@
+<!-- #authors Will Nance and Sanket Prabhu-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Doctor Self Study | You've received a new question</title>
+    <meta name="author" content="Will Nance">
+    <%= stylesheet_link_tag('access', :media => 'all') %>    
+  </head>
+  <body>
+    <div>
+      <%=  link_to("Click here to answer question", "localhost3000/assignments/respond#{@Assignment.id}", :class => 'action show') %>      
+    </div>
+  </body>
+</html>

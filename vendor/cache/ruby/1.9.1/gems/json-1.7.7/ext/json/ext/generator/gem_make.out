@@ -1,0 +1,2 @@
+C:/Ruby193/bin/ruby.exe extconf.rb 
+C:/Ruby193/bin/ruby.exe: invalid option -N  (-h will show valid options) (RuntimeError)

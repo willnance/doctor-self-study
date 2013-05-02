@@ -3,7 +3,7 @@ DoctorSelfStudy::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
-  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.delivery_method = :smtp
 
   #Resque stuff see http://psichron.za.net/wordpress/2012-12-06/heroku-resque-auto-scaling/
   config.redis_address = ENV['REDISTOGO_URL']

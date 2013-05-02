@@ -7,6 +7,10 @@
 
 <div class="General-container">
   <div class="hero-unit">
+    <%if @assignment.blank == true%>
+    <p>The response was blank. you werent able to answer the question in time.</p>
+  <%end%>
     <p> The question response was <%= @assignment.correct %> </p>
   </div>
+  
 </div>

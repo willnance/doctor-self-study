@@ -17,6 +17,9 @@
     <%= password_field_tag(:password, nil, :class => "input-block-level")%> <br>
     <button class ="btn btn-large btn-primary" type ="submit" value ="Log In">Log In</button>
     
+    <div class="password-reset">
+      <%= link_to("Forgot your password?", :controller => 'access', :action => 'reset_password') %>
+    </div>
     <% if !flash[:notice].blank? %>
       <div class="notice">
         <br>

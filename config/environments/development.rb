@@ -9,7 +9,7 @@ DoctorSelfStudy::Application.configure do
   config.redis_address = ENV['REDISTOGO_URL']
   config.cache_classes = false
   
-  config.action_mailer.delivery_method = :smtp
+ # config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   
   # Log error messages when you accidentally call methods on nil.

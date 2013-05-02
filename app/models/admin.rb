@@ -2,6 +2,7 @@
 require 'digest/sha2'
 #ALL jobs and models must extend the Autoscaling module for cheap Heroku deployment
 require 'heroku_resque_auto_scale'
+require "question_mailer"
 
  # This represents an administrator account for the website. This person 
  # has the ability to make new questions,enroll new users and edit
@@ -20,6 +21,12 @@ class Admin < ActiveRecord::Base
   validates :email , :presence => true, :length => {:maximum => 100} , :format => {:with => EMAIL_REGEX} , :confirmation => true
   attr_accessor :password
   validates_length_of :password, :within => 8..25, :on => :create
+  
+  
+  
+  def send_password_change_instructions 
+    QuestionMailer.send_password_reset_instructions(self).deliver
+  end
   
   
   # utility method

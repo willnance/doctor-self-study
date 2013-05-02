@@ -40,3 +40,8 @@ Admin-container{
     text-align: center;
     width: 1000px
 }
+
+.selectCorrectHeader{
+    text-align: left;
+    border: 2px solid;
+}

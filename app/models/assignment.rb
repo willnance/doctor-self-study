@@ -2,7 +2,7 @@
 require "scheduler_job"
 #ALL jobs and models must extend the Autoscaling module for cheap Heroku deployment
 require 'heroku_resque_auto_scale'
-
+require "question_mailer"
 
 # This represents a link between a question and a user. 
 # Since a single question can be assigned to multiple users,
@@ -26,10 +26,13 @@ class Assignment < ActiveRecord::Base
   
   #called after a user submits the response
   def grade
+    @question = self.question
     #only grade if they've responded
     if self.responded == true
       self.correct = (response == self.question.solution) 
+      self.blank = self.response == nil
     end
+    self.save
   end
   
   

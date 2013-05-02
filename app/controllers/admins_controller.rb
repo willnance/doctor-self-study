@@ -5,7 +5,7 @@ class AdminsController < ApplicationController
   
   #display all admins
   def index
-    @Admins = Admin.order("Admins.firstName ASC")
+    @Admins = Admin.order("id ASC")
   end
   
   

@@ -1,64 +1,90 @@
 <!-- #authors Will Nance and Sanket Prabhu -->
 <head>
-    <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application" %>
 
 </head>
 <table summary="question form fields">
-      <tr>
-        <th>Question Subject</th>
-        <td><%= f.text_field(:subject) %></td>
-      </tr>
-      <tr>
-        <th>Question</th>
-        <td><%= f.text_area(:question, :size=> "40x10") %></td>
-      </tr>
-      <tr>
-        <th>Choice A</th>
-        <td><%= f.text_field(:answerA) %>  </td>
-        <td><%= f.radio_button(:solution, "test(A);")%></td>
-      </tr>
-      <tr>
-        <th>Choice B</th>
-        <td><%= f.text_field(:answerB) %></td>
-        <td><%= f.radio_button(:solution, "test(B);")%></td>
-      </tr>
-      <tr>
-        <th>Choice C</th>
-        <td><%= f.text_field(:answerC) %></td>
-        <td><%= f.radio_button(:solution, "test(C);")%></td>
-      </tr>
-      <tr>
-        <th>Choice D</th>
-        <td><%= f.text_field(:answerD) %></td>
-        <td><%= f.radio_button(:solution, "test();")%></td>
-      </tr>
-      <tr>
-        <th>Correct Answer</th>
-        <td><%= f.text_field(:solution) %></td>
-      </tr>
-      <tr>
-        <th><%=f.label(:rotation)%></th>
-        <td><%=f.select(:rotation, 1..10,{:include_blank => 'all rotations'})%></td> 
-      </tr>
-      <tr>
-        <th><%=f.label(:year)%></th>
-        <td><%=f.select(:year, 1..10,{:include_blank => 'all years'})%></td> 
-      </tr>
-      <tr>
-        <th>Time to Push</th>
-        <td><%= f.datetime_select(:schedule , :order => [ :month , :day , :year]) %></td>
-      </tr>
-      
-    </table>
+  <tr>
+    <th>Question Subject</th>
+    <td><%= f.text_field(:subject) %></td>
+  </tr>
+  <tr>
+    <th>Question</th>
+    <td><%= f.text_area(:question, :size=> "40x10") %></td>
+  </tr>
+  <tr>
+    <th id ="selectCorrectHeader">Select Correct Answer</th>
+  </tr>
+  <tr>
+    <th>Choice A</th>
+    <td><%= f.text_field(:answerA) %>  </td>
+    <td>&nbsp;&nbsp;&nbsp;<%= f.radio_button(:solution, "", :id => "solA", :onclick => "test()")%></td>
+  </tr>
+  <tr>
+    <th>Choice B</th>
+    <td><%= f.text_field(:answerB) %></td>
+    <td>&nbsp;&nbsp;&nbsp;<%= f.radio_button(:solution, "", :id => "solB", :onclick => "test()")%></td>
+  </tr>
+  <tr>
+    <th>Choice C</th>
+    <td><%= f.text_field(:answerC) %></td>
+    <td>&nbsp;&nbsp;&nbsp;<%= f.radio_button(:solution, "", :id => "solC", :onclick => "test()")%></td>
+  </tr>
+  <tr>
+    <th>Choice D</th>
+    <td><%= f.text_field(:answerD) %></td>
+    <td>&nbsp;&nbsp;&nbsp;<%= f.radio_button(:solution, "", :id => "solD", :onclick => "test()")%></td>
+  </tr>
+  <!-- 
+  <tr>
+    <th>Correct Answer</th>
+    <td><%= f.text_field(:solution) %></td>
+  </tr> 
+  -->
+  <tr>
+    <th><%=f.label(:rotation)%></th>
+    <td><%=f.select(:rotation, 1..10,{:include_blank => 'all rotations'})%></td> 
+  </tr>
+  <tr>
+    <th><%=f.label(:year)%></th>
+    <td><%=f.select(:year, 1..10,{:include_blank => 'all years'})%></td> 
+  </tr>
+</table>
+<table>
+  <tr>
+    <th>Time to Push</th>
+    <td><%= f.datetime_select(:schedule , :order => [ :month , :day , :year]) %></td>
+  </tr>
 
-<input id="clickMe" type="button" onclick="test();" />
+</table>
 
 <script type="text/javascript">
   function test(){
-     var tempp = $('input[name="solution"]:checked').val();
-     alert(tempp);
-     var tmp = new String(tempp);
-     var selection = $(tmp).val();
-     alert(selection);
-     return true;
+    var tempp = $('input[name="question[solution]"]:checked').attr('id');
+    if(tempp == "solD"){
+      var temp2 = document.getElementById("question_answerD").value;
+      $('input[name="question[solution]"]:checked').attr('value', temp2);
+    }
+    else if(tempp == "solC"){
+      var temp2 = document.getElementById("question_answerC").value;
+      $('input[name="question[solution]"]:checked').attr('value', temp2);
+    }
+    else if(tempp == "solB"){
+      var temp2 = document.getElementById("question_answerB").value;
+      $('input[name="question[solution]"]:checked').attr('value', temp2);
+    }
+    else if(tempp == "solA"){
+      var temp2 = document.getElementById("question_answerA").value;
+      $('input[name="question[solution]"]:checked').attr('value', temp2);
+    }
+    /* alert(tempp);
+     var temp1 = document.getElementById(tempp).value;
+     alert (temp1);
+     document.getElementById("question_solution").value = temp1;
+     $('input[name="question[solution]"]:checked').attr('value', temp1); */
+
+    return true;
+  }
 </script>
+
+<input id="clickMe" type="button" onclick="test();" />
